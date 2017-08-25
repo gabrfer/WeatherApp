@@ -7,7 +7,7 @@ import java.net.URL
  * Created by Default on 28/07/2017.
  */
 
-class ForecastRequest(val zipCode: String) {
+class ForecastRequest(private val zipCode: String) {
 
     companion object {
         private val APP_ID = "15646a06818f61f7b8d7823ca833e1ce"
