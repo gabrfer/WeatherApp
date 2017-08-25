@@ -1,5 +1,17 @@
 package fer.kotlin.weatherapp.ui
 
-/**
- * Created by Default on 06/08/2017.
- */
+
+import android.app.Application
+import fer.kotlin.weatherapp.extensions.DelegatesExt
+
+class App : Application() {
+
+    companion object {
+        var instance: App by DelegatesExt.notNullSingleValue()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+    }
+}

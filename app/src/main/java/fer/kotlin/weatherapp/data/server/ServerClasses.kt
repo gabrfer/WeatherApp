@@ -1,4 +1,4 @@
-package fer.kotlin.weatherapp.data
+package fer.kotlin.weatherapp.data.server
 
 /**
  * Created by Default on 29/07/2017.

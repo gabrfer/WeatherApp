@@ -1,21 +1,30 @@
-package fer.kotlin.weatherapp.data.server
+package fer.kotlin.weatherapp.data.serverinthepast
 
 /**
  * Created by Default on 29/07/2017.
  */
-data class ForecastResult(val city: City, val list: List<Forecast>)
+data class PastForecastFirstCallResult(val descripcion: String, val estado: String, val datos: String, val metadatos: String)
 
-data class City(val id: Long, val name: String, val coord: Coordinates,
-                val country: String, val population: Int)
+data class PastForecastResult(val list: List<PastForecast>)
 
-data class Coordinates(val lon: Float, val lat: Float)
+data class PastForecast(val fecha: String,
+                        val indicativo: String,
+                        val nombre: String,
+                        val provincia: String,
+                        val altitud: String,
+                        val tmed: String,
+                        val prec: String,
+                        val tmin: String,
+                        val horatmin: String,
+                        val tmax: String,
+                        val horatmax: String,
+                        val dir: String,
+                        val velmedia: String,
+                        val racha: String,
+                        val horaracha: String,
+                        val sol: String,
+                        val presMax: String,
+                        val horaPresMax: String,
+                        val presMin: String,
+                        val horaPresMin: String)
 
-data class Forecast(val dt: Long, val temp: Temperature, val pressure: Float,
-                    val humidity: Int, val weather: List<Weather>,
-                    val speed: Float, val deg: Int, val clouds: Int,
-                    val rain: Float)
-
-data class Temperature(val day: Float, val min: Float, val max: Float,
-                       val night: Float, val eve: Float, val morn: Float)
-
-data class Weather(val id: Long, val main: String, val description: String, val icon: String)
