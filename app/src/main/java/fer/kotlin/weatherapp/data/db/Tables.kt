@@ -45,3 +45,14 @@ object PastForecastTable {
     val PRESMIN = "presmin"
     val HORAPRESMIN = "horapresmin"
 }
+
+object StationTable {
+    val NAME = "Station"
+    val LATITUD = "latitud"
+    val PROVINCIA = "provincia"
+    val ALTITUD = "altitud"
+    val INDICATIVO = "indicativo"
+    val NOMBRE = "nombre"
+    val INDSINOP = "indsinop"
+    val LONGITUD = "longitud"
+}

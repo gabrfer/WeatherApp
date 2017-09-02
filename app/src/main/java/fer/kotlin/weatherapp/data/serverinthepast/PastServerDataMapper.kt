@@ -9,7 +9,6 @@ import fer.kotlin.weatherapp.domain.model.PastForecast as ModelPastForecast
 class PastServerDataMapper {
 
     fun convertToDomain(pastForecast: PastForecastResult) = with(pastForecast) {
-        println("OBJETOOOOOOOOOOOOOOOOS: " + list.size)
         PastForecastList(convertPastForecastListToDomain(list))
     }
 
@@ -23,7 +22,7 @@ class PastServerDataMapper {
     private fun convertPastForecastItemToDomain(pastForecast: PastForecast) = with(pastForecast) {
         ModelPastForecast(fecha, indicativo, nombre, provincia, altitud, tmed, prec, tmin, horatmin, tmax, horatmax,
                           dir, velmedia, racha, horaracha, sol, presMax, horaPresMax, presMin, horaPresMin,
-                          generateIconUrl("10"))
+                          generateIconUrl("10d"))
     }
 
     private fun generateIconUrl(iconCode: String) = "http://openweathermap.org/img/w/$iconCode.png"

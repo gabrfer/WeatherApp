@@ -37,8 +37,8 @@ class PastForecastListAdapter(val pastForecastList: PastForecastList, val itemCl
                 Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
                 itemView.date.text = fecha
                 itemView.description.text = nombre
-                itemView.maxTemperature.text = "${tmin}º"
-                itemView.minTemperature.text = "${tmax}º"
+                itemView.maxTemperature.text = "${tmax}º"
+                itemView.minTemperature.text = "${tmin}º"
                 //itemView.setOnClickListener { itemClick(this) }
             }
         }

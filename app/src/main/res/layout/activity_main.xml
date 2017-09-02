@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/main">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/forecastList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="18dp"
+        android:background="@drawable/circle"
+        android:drawableTop="@mipmap/ic_cloud_queue_white_48dp"
+        android:paddingTop="10dp"
+        android:text="Past"
+        android:textColor="#fff"
+        android:id="@+id/btnPast"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="34dp" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btnActual"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/circle"
+        android:drawableTop="@mipmap/ic_cloud_queue_white_48dp"
+        android:paddingTop="10dp"
+        android:text="Actual forecast"
+        android:textColor="#fff"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/btnPast"
+        android:layout_alignLeft="@+id/btnPast"
+        android:layout_alignStart="@+id/btnPast"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp" />
+
+</RelativeLayout>
