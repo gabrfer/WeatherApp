@@ -13,10 +13,7 @@ import fer.kotlin.weatherapp.extensions.toDateString
 import kotlinx.android.synthetic.main.item_forecast.view.*
 
 
-/**
- * Created by Default on 27/07/2017.
- */
-class ForecastListAdapter(val forecastList: ForecastList, val itemClick: (Forecast) -> Unit):
+class ForecastListAdapter(private val forecastList: ForecastList, private val itemClick: (Forecast) -> Unit):
                                     RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +28,7 @@ class ForecastListAdapter(val forecastList: ForecastList, val itemClick: (Foreca
 
     override fun getItemCount(): Int = forecastList.size
 
-    class ViewHolder(view: View, val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, private val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
 
         fun bindForecast(forecast: Forecast) {
             with(forecast) {

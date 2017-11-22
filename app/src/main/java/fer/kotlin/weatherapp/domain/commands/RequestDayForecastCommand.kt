@@ -1,13 +1,12 @@
 package fer.kotlin.weatherapp.domain.commands
 
+import fer.kotlin.weatherapp.domain.datasource.DsForecastProvider
 import fer.kotlin.weatherapp.domain.model.Forecast
 import fer.kotlin.weatherapp.domain.datasource.ForecastProvider
+import fer.kotlin.weatherapp.domain.model.DsForecast
 
-/**
- * Created by Default on 12/08/2017.
- */
-class RequestDayForecastCommand(val id: Long, val forecastProvider: ForecastProvider = ForecastProvider()) : Command<Forecast> {
+class DsRequestActualForecast(val latitude: String, val longitude: String,
+                            val dsForecastProvider: DsForecastProvider = DsForecastProvider() ): Command<DsForecast> {
 
-    override fun execute() = forecastProvider.requestForecast(id)
-    
+    override fun execute() = dsForecastProvider.requestActualForecast(latitude, longitude)
 }
