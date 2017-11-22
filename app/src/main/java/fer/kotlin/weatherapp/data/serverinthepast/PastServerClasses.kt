@@ -3,7 +3,7 @@ package fer.kotlin.weatherapp.data.serverinthepast
 /**
  * Created by Default on 29/07/2017.
  */
-data class PastForecastFirstCallResult(val descripcion: String, val estado: String, val datos: String, val metadatos: String)
+data class AemetFirstCallResult(val descripcion: String, val estado: String, val datos: String, val metadatos: String)
 
 data class PastForecastResult(val list: List<PastForecast>)
 
@@ -28,3 +28,13 @@ data class PastForecast(val fecha: String,
                         val presMin: String,
                         val horaPresMin: String)
 
+data class StationsResult(val list: List<Station>)
+
+data class Station(val id: Long,
+                   val latitud: String,
+                   val provincia: String,
+                   val altitud: String,
+                   val indicativo: String,
+                   val nombre: String,
+                   val indsinop: String,
+                   val longitud: String)

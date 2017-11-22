@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".ui.App"
@@ -14,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.MainActivity">
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:theme="@style/MyAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,14 +26,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.DetailActivity"
+            android:name=".ui.activities.earthforecast.actual.DetailActualActivity"
             android:parentActivityName=".ui.activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fer.kotlin.weatherapp.ui.activities.MainActivity" />
         </activity>
-        <activity android:name=".ui.activities.HistoricalForecastActivity" />
-        <activity android:name=".ui.activities.ActualForecastActivity"></activity>
+        <activity android:name=".ui.activities.earthforecast.MainEarthForecastActivity" />
+        <activity android:name=".ui.activities.earthforecast.past.HistoricalForecastActivity" />
+        <activity android:name=".ui.activities.earthforecast.actual.ActualForecastActivity" />
+        <activity android:name=".ui.activities.earthforecast.past.DetailHistoricalActivity" />
+        <activity android:name=".ui.activities.earthforecast.actual.MainActualActivity" />
+        <activity
+            android:name=".ui.activities.earthforecast.past.MainHistoricalActivity"
+            android:exported="true" />
+        <activity android:name=".ui.activities.marsforecast.MarsMainActivity" />
+        <activity android:name=".ui.activities.EnterActivity"></activity>
     </application>
 
 </manifest>

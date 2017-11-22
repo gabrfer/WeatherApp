@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#828cb4</color>
+    <color name="colorPrimaryDark">#212121</color>
+    <color name="colorAccent">#787887</color>
+
+    <color name="white">#ffffff</color>
+    <color name="yellow">#ffd600</color>
+    <color name="DarkBlueEarth">#011835</color>
+    <color name="DarkOrangeMars">#5c3f25</color>
+    <color name="DarkBlueAstronomics">#021119</color>
+
 </resources>

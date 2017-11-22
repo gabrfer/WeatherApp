@@ -1,8 +1,8 @@
 package fer.kotlin.weatherapp.data.db
 
 import fer.kotlin.weatherapp.domain.datasource.ForecastDataSource
-import fer.kotlin.weatherapp.domain.model.Forecast
-import fer.kotlin.weatherapp.domain.model.ForecastList
+import fer.kotlin.weatherapp.domain.datasource.PastForecastDataSource
+import fer.kotlin.weatherapp.domain.model.*
 import fer.kotlin.weatherapp.extensions.*
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
@@ -12,7 +12,7 @@ import org.jetbrains.anko.db.select
  */
 class ForecastDb(
         val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.instance,
-        val dataMapper: DbDataMapper = DbDataMapper()) : ForecastDataSource {
+        val dataMapper: DbDataMapper = DbDataMapper()) : ForecastDataSource, PastForecastDataSource {
 
     override fun requestForecastByZipCode(zipCode: Long, date: Long) = forecastDbHelper.use {
 
@@ -48,4 +48,30 @@ class ForecastDb(
             }
         }
     }
+
+    /* Stations */
+    fun saveStations(list: StationList) = forecastDbHelper.use {
+
+        clear(StationTable.NAME)
+
+        val listStationDBO = dataMapper.convertStationListFromDomain(list)
+
+        listStationDBO.forEach {
+            insert(StationTable.NAME, *it.map.toVarargArray())
+        }
+
+    }
+
+    override fun requestStations() = forecastDbHelper.use {
+
+        val stationsList = select(StationTable.NAME)
+                .parseList { StationDBO(HashMap(it)) }
+
+        StationList(dataMapper.convertStationListToDomain(stationsList))
+    }
+
+    override fun requestForecastByDateStation(station: String, dateFrom: String, dateTo: String): PastForecastList? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
+

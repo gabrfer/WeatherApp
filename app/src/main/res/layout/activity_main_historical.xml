@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/after_the_rain"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:windowSoftInputMode="stateHidden|adjustResize">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
+        <Button
+            android:id="@+id/editTextDate"
+            style="@android:style/Widget.Holo.Light.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="38dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/shadow_0355"
+            android:contextClickable="false"
+            android:cursorVisible="false"
+            android:drawableRight="@android:drawable/ic_menu_my_calendar"
+            android:ems="10"
+            android:enabled="true"
+            android:hint="Fecha a buscar"
+            android:paddingRight="15dp"
+            android:textColorLink="@android:color/transparent" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTextDate"
+        android:layout_marginTop="24dp"
+        android:layout_weight="0.4"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/txtSearch1Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:backgroundTint="@color/colorAccent"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            android:text="Busqueda por provincia"
+            android:textColor="@color/colorAccent" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2" />
+
+        <Button
+            android:id="@+id/btnProv"
+            style="@android:style/Widget.DeviceDefault.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_0355"
+            android:drawableRight="@drawable/ic_down"
+            android:elevation="0dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Selecciona provincia"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
+        <Button
+            android:id="@+id/btnMunicipio"
+            style="@android:style/Widget.DeviceDefault.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnSearch"
+            android:layout_alignLeft="@+id/btnProv"
+            android:background="@drawable/shadow_0355"
+            android:drawableRight="@drawable/ic_down"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Selecciona municipio"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlaout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="33dp"
+        android:layout_weight="0.20"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/txtSearch2Title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:backgroundTint="@color/colorAccent"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            android:text="Busqueda por municipio"
+            android:textColor="@color/colorAccent"
+            android:textColorHighlight="@color/colorAccent" />
+
+        <AutoCompleteTextView
+            android:id="@+id/txtMunicipio"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@+id/btnSearch"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.5"
+            android:backgroundTint="@android:color/darker_gray"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/background_dark"
+            tools:layout_width="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.20"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:background="@drawable/shadow_161347"
+            android:text="BUSCAR" />
+    </LinearLayout>
+
+</LinearLayout>
