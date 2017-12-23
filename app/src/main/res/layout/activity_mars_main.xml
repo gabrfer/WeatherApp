@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mars_main"
+    android:background="@mipmap/mars_main"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:background="@drawable/mars_curiosity"
+                android:background="@mipmap/mars_curiosity"
                 android:orientation="horizontal">
 
             </LinearLayout>

@@ -61,7 +61,7 @@ class StationDBO(var map: MutableMap<String, Any?>) {
     }
 }
 
-class DsForecastUnit(val map: MutableMap<String, Any?>) {
+class DsForecastHourly(val map: MutableMap<String, Any?>) {
 
     var _id: Long by map
     var idDsForecast: Long by map
@@ -81,11 +81,12 @@ class DsForecastUnit(val map: MutableMap<String, Any?>) {
     var cloudCover: String by map 
     var uvIndex: String by map
     var visibility: String by map
+    var ozone: String by map
     
     constructor(idDsForecast: Long, time: String, summary: String, icon: String, precipIntensity: String,
                 precipProbability: String, precipType: String, temperature: String, apparentTemperature: String,
                 dewPoint: String, humidity: String, pressure: String, windSpeed: String, windBearing: String,
-                cloudCover: String, uvIndex: String, visibility: String): this(HashMap())
+                cloudCover: String, uvIndex: String, visibility: String, ozone: String): this(HashMap())
     {
         this.idDsForecast = idDsForecast
         this.time = time
@@ -104,11 +105,12 @@ class DsForecastUnit(val map: MutableMap<String, Any?>) {
         this.cloudCover = cloudCover
         this.uvIndex = uvIndex
         this.visibility = visibility
+        this.ozone = ozone
     }
     
 }
 
-class DsForecast(val map: MutableMap<String, Any?>, var hourly: List<DsForecastUnit>) {
+class DsForecast(val map: MutableMap<String, Any?>, var hourly: List<DsForecastHourly>) {
 
     var _id: Long by map
     var latitude: String by map
@@ -143,6 +145,7 @@ class DsForecast(val map: MutableMap<String, Any?>, var hourly: List<DsForecastU
     var uvIndex: String by map
     var uvIndexTime: String by map
     var visibility: String by map
+    var ozone: String by map
     var temperatureMin: String by map
     var temperatureMinTime: String by map
     var temperatureMax: String by map
@@ -154,14 +157,14 @@ class DsForecast(val map: MutableMap<String, Any?>, var hourly: List<DsForecastU
 
     var offset: String by map
 
-    constructor(latitude: String, longitude: String, timezone: String, hourly: List<DsForecastUnit>, time: String,
+    constructor(latitude: String, longitude: String, timezone: String, hourly: List<DsForecastHourly>, time: String,
                 summary: String, icon: String, sunriseTime: String, sunsetTime: String, moonPhase: String,
                 precipIntensity: String, precipIntensityMax: String, precipIntensityMaxTime: String, precipProbability: String,
                 precipType: String, temperatureHigh: String, temperatureHighTime: String, temperatureLow: String,
                 temperatureLowTime: String, apparentTemperatureHigh: String, apparentTemperatureHighTime: String,
                 apparentTemperatureLow: String, apparentTemperatureLowTime: String, dewPoint: String, humidity: String,
                 pressure: String, windSpeed: String, windBearing: String, cloudCover: String, uvIndex: String, uvIndexTime: String,
-                visibility: String, temperatureMin: String, temperatureMinTime: String, temperatureMax: String,
+                visibility: String, ozone: String, temperatureMin: String, temperatureMinTime: String, temperatureMax: String,
                 temperatureMaxTime: String, apparentTemperatureMax: String, apparentTemperatureMaxTime: String,
                 apparentTemperatureMin: String, apparentTemperatureMinTime: String, offset: String): this(HashMap(), hourly)
     {
@@ -197,6 +200,7 @@ class DsForecast(val map: MutableMap<String, Any?>, var hourly: List<DsForecastU
         this.uvIndex = uvIndex
         this.uvIndexTime = uvIndexTime
         this.visibility = visibility
+        this.ozone = ozone
         this.temperatureMin = temperatureMin
         this.temperatureMinTime = temperatureMinTime
         this.temperatureMax = temperatureMax

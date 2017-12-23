@@ -18,17 +18,49 @@ fun IntArray.ToDateUTC(includeUtcText: Boolean): String {
     return outputFmt.format(date.time)
 }
 
+fun String.DateUnixToNormal(): String {
+    return if (this != "") {
+        val date = Date(this.toLong() * 1000)
+        val outputFmt = SimpleDateFormat("dd/MM/yy")
+
+        return outputFmt.format(date.time)
+    } else {
+        "[Sin datos]"
+    }
+}
+
+fun String.DateUnixToDayOfWeek(): String {
+    return if (this != "") {
+        val date = Date(this.toLong() * 1000)
+        val outputFmt = SimpleDateFormat("EEE")
+
+        return outputFmt.format(date.time)
+    } else {
+        "[Sin datos]"
+    }
+}
+
+fun String.DateUnixToDayOfMonth(): String {
+    return if (this != "") {
+        val date = Date(this.toLong() * 1000)
+        val outputFmt = SimpleDateFormat("EEEEE dd")
+
+        return outputFmt.format(date.time)
+    } else {
+        "[Sin datos]"
+    }
+}
+
 fun String.UnixToTime(): String {
-    if (this != "") {
+    return if (this != "") {
         val date = Date(this.toLong() * 1000)
 
         val outputFmt = SimpleDateFormat("HH:mm")
         outputFmt.timeZone = TimeZone.getTimeZone("UTC")
 
-        return outputFmt.format(date.time)
-    }
-    else {
-        return "[Sin datos]"
+        outputFmt.format(date.time)
+    } else {
+        "[Sin datos]"
     }
 }
 

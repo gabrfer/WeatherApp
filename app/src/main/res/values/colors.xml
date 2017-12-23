@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#828cb4</color>
+    <color name="colorPrimary">#7986cb</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#787887</color>
+
+    <color name="white_70">#b3ffffff</color>
+    <color name="cyan_50">#E0F7FA</color>
+    <color name="amber_50">#FFF8E1</color>
+    <color name="purple_50">#F3E5F5</color>
+    <color name="black_alpha_40">#66000000</color>
 
     <color name="white">#ffffff</color>
     <color name="yellow">#ffd600</color>
     <color name="DarkBlueEarth">#011835</color>
     <color name="DarkOrangeMars">#5c3f25</color>
     <color name="DarkBlueAstronomics">#021119</color>
+    <color name="card_orange_grey">#8cd1c1b9</color>
+    <color name="card_orange_grey_child">#99eebca1</color>
+    <color name="grey_current_weather_back">#4dff8a65</color>
 
 </resources>

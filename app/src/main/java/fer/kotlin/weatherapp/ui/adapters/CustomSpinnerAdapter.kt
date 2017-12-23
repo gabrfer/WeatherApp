@@ -48,7 +48,7 @@ class CustomSpinnerAdapter(private val activity: Context, private val asr: List<
         txt.gravity = Gravity.LEFT
         txt.setPadding(16, 16, 16, 16)
         txt.textSize = 16f
-        txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_down, 0)
+        txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_down, 0)
         txt.text = if (dataType == ListType.Provincia) asr[i].provincia else asr[i].nombre
         txt.setTextColor(Color.parseColor("#000000"))
         return txt

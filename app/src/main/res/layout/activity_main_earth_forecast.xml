@@ -55,7 +55,7 @@
                         android:cropToPadding="false"
                         android:scaleType="fitXY"
                         android:scrollbarAlwaysDrawHorizontalTrack="false"
-                        android:src="@drawable/earthweatheractual" />
+                        android:src="@mipmap/earthweatheractual" />
 
                     <TextView
                         android:id="@+id/card_title"
@@ -125,18 +125,18 @@
                     android:layout_weight="0.70">
 
                     <ImageView
-                        android:id="@+id/card_image2"
+                        android:id="@+id/card_image3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.6"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/earthweatherpast" />
+                        app:srcCompat="@mipmap/earthweatherpast" />
 
                     <TextView
-                        android:id="@+id/card_title2"
+                        android:id="@+id/card_title3"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/card_title_height"
-                        android:layout_alignBottom="@+id/card_image2"
+                        android:layout_alignBottom="@+id/card_image3"
                         android:layout_marginLeft="5dp"
                         android:fontFamily="monospace"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -146,7 +146,7 @@
                 </RelativeLayout>
 
                 <me.grantland.widget.AutofitTextView
-                    android:id="@+id/card_text2"
+                    android:id="@+id/card_text3"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginLeft="5dp"
@@ -202,7 +202,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.6"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/earthweatherfuture" />
+                        app:srcCompat="@mipmap/earthweatherfuture" />
 
                     <TextView
                         android:id="@+id/card_title2"

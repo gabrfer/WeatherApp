@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/na" />
+                    app:srcCompat="@mipmap/na" />
             </LinearLayout>
 
             <LinearLayout
@@ -186,14 +186,14 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.1"
                     android:baselineAlignBottom="false"
-                    app:srcCompat="@drawable/ic_arrow_down_red" />
+                    app:srcCompat="@mipmap/ic_arrow_down_red" />
 
                 <ImageView
                     android:id="@+id/imageViewCompass"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.9"
-                    app:srcCompat="@drawable/compass_android" />
+                    app:srcCompat="@mipmap/compass_android" />
             </LinearLayout>
 
             <LinearLayout

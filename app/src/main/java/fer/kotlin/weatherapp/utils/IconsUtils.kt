@@ -1,21 +1,11 @@
 package fer.kotlin.weatherapp.utils
 
-import android.app.Application
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import fer.kotlin.weatherapp.R
-import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.res.ResourcesCompat
-import com.fasterxml.jackson.databind.util.ClassUtil.getPackageName
 
 
-/**
- * Created by Default on 15/10/2017.
- */
 fun ImageView.loadForecastIconUrl(iconText: String, ctx: Context) {
     Picasso.with(ctx).load(getDrawableForecast(iconText)).into(this)
 }
@@ -31,28 +21,28 @@ fun ImageView.loadMoonPhaseIconUrl(phase: Double, ctx: Context) {
 fun getDrawableForecast(name: String) =
 
     when (name) {
-        "clear-day" -> R.drawable.clear_day
-        "clear-night" -> R.drawable.clear_night
-        "rain" -> R.drawable.rain
-        "snow" -> R.drawable.snow
-        "sleet" -> R.drawable.sleet
-        "wind" -> R.drawable.wind
-        "fog" -> R.drawable.fog
-        "cloudy" -> R.drawable.cloudy
-        "partly-cloudy-day" -> R.drawable.partly_cloudy_day
-        "partly-cloudy-night" -> R.drawable.partly_cloudy_night
-        "hail" -> R.drawable.hail
-        "thunderstorm" -> R.drawable.thunderstorm
-        "tornado" -> R.drawable.tornado
-        else -> R.drawable.na
+        "clear-day" -> R.mipmap.clear_day_white
+        "clear-night" -> R.mipmap.clear_night_white
+        "rain" -> R.mipmap.rain_white
+        "snow" -> R.mipmap.snow_white
+        "sleet" -> R.mipmap.sleet_white
+        "wind" -> R.mipmap.wind_white
+        "fog" -> R.mipmap.fog_white
+        "cloudy" -> R.mipmap.cloudy_white
+        "partly-cloudy-day" -> R.mipmap.partly_cloudy_day_white
+        "partly-cloudy-night" -> R.mipmap.partly_cloudy_night_white
+        "hail" -> R.mipmap.hail_white
+        "thunderstorm" -> R.mipmap.thunderstorm_white
+        "tornado" -> R.mipmap.tornado_white
+        else -> R.mipmap.na_white
     }
 
 fun getDrawableRain(name: String) =
         when (name) {
-                "rain" -> R.drawable.rain
-                "snow" -> R.drawable.snow
-                "sleet" -> R.drawable.sleet
-                else -> R.drawable.na
+                "rain" -> R.mipmap.rain
+                "snow" -> R.mipmap.snow
+                "sleet" -> R.mipmap.sleet
+                else -> R.mipmap.na
         }
 
 fun getPrecipType(name: String) =
@@ -75,14 +65,14 @@ fun getUvIndexColor(uvIndex: Int) =
 
 fun getDrawableMoonPhase(name: Double) =
         when (name) {
-            0.0 -> R.drawable.luna_llena
-            in 0.01 .. 0.24 -> R.drawable.luna_gibada_creciente
-            0.25 -> R.drawable.luna_cuarto_creciente
-            in 0.26 .. 0.49 -> R.drawable.luna_nueva_visible
-            0.5 -> R.drawable.luna_nueva
-            in 0.51 .. 0.74 -> R.drawable.luna_menguante
-            0.75 -> R.drawable.luna_cuarto_menguante
-            in 0.76 .. 1.00 -> R.drawable.luna_gibada_menguante
+            0.0 -> R.mipmap.luna_llena
+            in 0.01 .. 0.24 -> R.mipmap.luna_gibada_creciente
+            0.25 -> R.mipmap.luna_cuarto_creciente
+            in 0.26 .. 0.49 -> R.mipmap.luna_nueva_visible
+            0.5 -> R.mipmap.luna_nueva
+            in 0.51 .. 0.74 -> R.mipmap.luna_menguante
+            0.75 -> R.mipmap.luna_cuarto_menguante
+            in 0.76 .. 1.00 -> R.mipmap.luna_gibada_menguante
 
-            else -> R.drawable.na
+            else -> R.mipmap.na
         }

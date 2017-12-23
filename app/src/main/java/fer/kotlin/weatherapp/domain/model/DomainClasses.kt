@@ -85,61 +85,18 @@ data class Herria(var herri_kodea: String, var izena: String, var probintzia: St
     override fun toString(): String = this.izena
 }
 
-data class DsForecast(val id: Long, val latitude: String, val longitude: String, val timezone: String, val hourly: List<DsForecastUnit>,
-                      val time: String, val summary: String, val icon: String, val sunriseTime: String, val sunsetTime: String,
-                      val moonPhase: String, val precipIntensity: String, val precipIntensityMax: String,
-                      val precipIntensityMaxTime: String, val precipProbability: String, val precipType: String, val temperatureHigh: String,
-                      val temperatureHighTime: String, val temperatureLow: String, val temperatureLowTime: String, val apparentTemperatureHigh: String,
-                      val apparentTemperatureHighTime: String, val apparentTemperatureLow: String, val apparentTemperatureLowTime: String,
-                      val dewPoint: String, val humidity: String, val pressure: String, val windSpeed: String, val windBearing: String,
-                      val cloudCover: String, val uvIndex: String, val uvIndexTime: String, val visibility: String,
-                      val temperatureMin: String, val temperatureMinTime: String, val temperatureMax: String,
-                      val temperatureMaxTime: String, val apparentTemperatureMax: String, val apparentTemperatureMaxTime: String,
-                      val apparentTemperatureMin: String, val apparentTemperatureMinTime: String, val offset: String) : Parcelable {
+data class DsForecast(val id: Long, val latitude: String, val longitude: String, val timezone: String,
+                      val currently: DsForecastCurrently? = null, val hourly: List<DsForecastHourly>,
+                      val daily: List<DsForecastDaily>, val offset: String) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readLong(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.createTypedArrayList(DsForecastUnit),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString()) {
-    }
+            parcel.readParcelable<DsForecastCurrently>(DsForecastCurrently.javaClass.classLoader),
+            parcel.createTypedArrayList(DsForecastHourly),
+            parcel.createTypedArrayList(DsForecastDaily),
+            parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
@@ -147,6 +104,152 @@ data class DsForecast(val id: Long, val latitude: String, val longitude: String,
         parcel.writeString(longitude)
         parcel.writeString(timezone)
         parcel.writeTypedList(hourly)
+        parcel.writeTypedList(daily)
+        parcel.writeString(offset)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<DsForecast> {
+        override fun createFromParcel(parcel: Parcel): DsForecast {
+            return DsForecast(parcel)
+        }
+
+        override fun newArray(size: Int): Array<DsForecast?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
+data class DsForecastCurrently(val id: Long, val idDsForecast: Long, val time: String?, val summary: String?,
+                               val icon: String?, val nearestStormDistance: String?, val nearestStormBearing: String?,
+                               val precipIntensity: String?, val precipProbability: String?, val temperature: String?,
+                               val apparentTemperature: String?, val dewPoint: String?, val humidity: String?,
+                               val pressure: String?, val windSpeed: String?, val windGust: String?,
+                               val windBearing: String?, val cloudCover: String?, val uvIndex: String?,
+                               val visibility: String?, val ozone: String?) : Parcelable {
+
+    constructor(parcel: Parcel) : this(
+            parcel.readLong(),
+            parcel.readLong(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString())
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeLong(id)
+        parcel.writeLong(idDsForecast)
+        parcel.writeString(time)
+        parcel.writeString(summary)
+        parcel.writeString(icon)
+        parcel.writeString(nearestStormDistance)
+        parcel.writeString(nearestStormBearing)
+        parcel.writeString(precipIntensity)
+        parcel.writeString(precipProbability)
+        parcel.writeString(temperature)
+        parcel.writeString(apparentTemperature)
+        parcel.writeString(dewPoint)
+        parcel.writeString(humidity)
+        parcel.writeString(pressure)
+        parcel.writeString(windSpeed)
+        parcel.writeString(windBearing)
+        parcel.writeString(cloudCover)
+        parcel.writeString(uvIndex)
+        parcel.writeString(visibility)
+        parcel.writeString(ozone)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<DsForecastHourly> {
+        override fun createFromParcel(parcel: Parcel): DsForecastHourly {
+            return DsForecastHourly(parcel)
+        }
+
+        override fun newArray(size: Int): Array<DsForecastHourly?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
+data class DsForecastDaily(val id: Long, val idDsForecast: Long, val time: String, val summary: String, val icon: String,
+                           val sunriseTime: String, val sunsetTime: String, val moonPhase: String,
+                           val precipIntensity: String, val precipIntensityMax: String,
+                           val precipIntensityMaxTime: String, val precipProbability: String, val precipType: String,
+                           val temperatureHigh: String, val temperatureHighTime: String, val temperatureLow: String,
+                           val temperatureLowTime: String, val apparentTemperatureHigh: String,
+                           val apparentTemperatureHighTime: String, val apparentTemperatureLow: String,
+                           val apparentTemperatureLowTime: String, val dewPoint: String, val humidity: String,
+                           val pressure: String, val windSpeed: String, val windBearing: String, val cloudCover: String,
+                           val uvIndex: String, val uvIndexTime: String, val visibility: String, val ozone: String,
+                           val temperatureMin: String, val temperatureMinTime: String, val temperatureMax: String,
+                           val temperatureMaxTime: String, val apparentTemperatureMax: String,
+                           val apparentTemperatureMaxTime: String, val apparentTemperatureMin: String,
+                           val apparentTemperatureMinTime: String) : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readLong(),
+            parcel.readLong(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString())
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeLong(id)
+        parcel.writeLong(idDsForecast)
         parcel.writeString(time)
         parcel.writeString(summary)
         parcel.writeString(icon)
@@ -175,6 +278,7 @@ data class DsForecast(val id: Long, val latitude: String, val longitude: String,
         parcel.writeString(uvIndex)
         parcel.writeString(uvIndexTime)
         parcel.writeString(visibility)
+        parcel.writeString(ozone)
         parcel.writeString(temperatureMin)
         parcel.writeString(temperatureMinTime)
         parcel.writeString(temperatureMax)
@@ -183,29 +287,28 @@ data class DsForecast(val id: Long, val latitude: String, val longitude: String,
         parcel.writeString(apparentTemperatureMaxTime)
         parcel.writeString(apparentTemperatureMin)
         parcel.writeString(apparentTemperatureMinTime)
-        parcel.writeString(offset)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<DsForecast> {
-        override fun createFromParcel(parcel: Parcel): DsForecast {
-            return DsForecast(parcel)
+    companion object CREATOR : Parcelable.Creator<DsForecastDaily> {
+        override fun createFromParcel(parcel: Parcel): DsForecastDaily {
+            return DsForecastDaily(parcel)
         }
 
-        override fun newArray(size: Int): Array<DsForecast?> {
+        override fun newArray(size: Int): Array<DsForecastDaily?> {
             return arrayOfNulls(size)
         }
     }
 }
 
-data class DsForecastUnit(val id: Long, val idDsForecast: Long, val time: String, val summary: String, val icon: String,
+data class DsForecastHourly(val id: Long, val idDsForecast: Long, val time: String, val summary: String, val icon: String,
                           val precipIntensity: String, val precipProbability: String, val precipType: String,
                           val temperature: String, val apparentTemperature: String, val dewPoint: String,
                           val humidity: String, val pressure: String, val windSpeed: String, val windBearing: String,
-                          val cloudCover: String, val uvIndex: String, val visibility: String) : Parcelable {
+                          val cloudCover: String, val uvIndex: String, val visibility: String, val ozone: String) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readLong(),
             parcel.readLong(),
@@ -224,8 +327,8 @@ data class DsForecastUnit(val id: Long, val idDsForecast: Long, val time: String
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString()) {
-    }
+            parcel.readString(),
+            parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
@@ -245,19 +348,20 @@ data class DsForecastUnit(val id: Long, val idDsForecast: Long, val time: String
         parcel.writeString(windBearing)
         parcel.writeString(cloudCover)
         parcel.writeString(uvIndex)
-        parcel.writeString(visibility)
+        parcel.writeString(visibility) 
+        parcel.writeString(ozone)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<DsForecastUnit> {
-        override fun createFromParcel(parcel: Parcel): DsForecastUnit {
-            return DsForecastUnit(parcel)
+    companion object CREATOR : Parcelable.Creator<DsForecastHourly> {
+        override fun createFromParcel(parcel: Parcel): DsForecastHourly {
+            return DsForecastHourly(parcel)
         }
 
-        override fun newArray(size: Int): Array<DsForecastUnit?> {
+        override fun newArray(size: Int): Array<DsForecastHourly?> {
             return arrayOfNulls(size)
         }
     }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fer.kotlin.weatherapp.ui.fragments.FragmentEntryDetails">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <include layout="@layout/fragment_entry_current_general_view" />
+
+        <include layout="@layout/fragment_entry_current_airq_view" />
+
+        <include layout="@layout/fragment_entry_current_sun_view" />
+
+        <include layout="@layout/fragment_entry_current_moon_view" />
+
+    </LinearLayout>
+
+</ScrollView>

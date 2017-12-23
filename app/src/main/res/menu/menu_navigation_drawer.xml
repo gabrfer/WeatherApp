@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:id="@+id/prevActual"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pred_actual"
+            android:icon="@mipmap/ic_share"
+            android:title="Previsión actual" />
+    </group>
+
+    <group android:id="@+id/meteoFecha"
+        android:checkableBehavior="single">
+    <item
+        android:checkable="false"
+        android:title="Meteo por fecha">
+        <menu>
+            <item
+                android:icon="@mipmap/ic_email_black"
+                android:title="Datos históricos" />
+            <item
+                android:icon="@drawable/ic_media_play_dark"
+                android:title="Previsión futura" />
+        </menu>
+    </item>
+    </group>
+
+    <group android:id="@+id/mars"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_mars"
+            android:icon="@mipmap/ic_share"
+            android:title="Meteo en Marte" />
+    </group>
+
+    <group  android:id="@+id/eventosAstr"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_eventos_astro"
+            android:icon="@mipmap/ic_share"
+            android:title="Eventos astronómicos" />
+    </group>
+
+    <group android:id="@+id/twitter"
+        android:checkableBehavior="single">
+        <item
+            android:checkable="false"
+            android:title="Zona Twitter">
+            <menu>
+                <item
+                    android:icon="@mipmap/ic_email_black"
+                    android:title="Noticias Meteo" />
+                <item
+                    android:icon="@drawable/ic_media_play_dark"
+                    android:title="Noticias Ciencia" />
+            </menu>
+        </item>
+    </group>
+
+    <group  android:id="@+id/quiz"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_quiz"
+            android:icon="@mipmap/ic_share"
+            android:title="Quiz" />
+    </group>
+
+</menu>

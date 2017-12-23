@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottombaritem_current"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="Ahora"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottombaritem_detail"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="Detalle"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottombaritem_hours"
+        android:icon="@mipmap/ic_action_clock"
+        android:title="Dia"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottombaritem_week"
+        android:icon="@android:drawable/ic_menu_week"
+        android:title="Semana"
+        app:showAsAction="ifRoom" />
+
+</menu>

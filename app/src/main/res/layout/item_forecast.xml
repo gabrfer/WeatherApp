@@ -20,9 +20,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="@dimen/spacing_xlarge">
+        android:padding="@dimen/spacing_xlarge"
+        android:weightSum="1">
 
         <!--android:background="@drawable/shadow_161347"-->
+
         <ImageView
             android:id="@+id/icon"
             android:layout_width="48dp"

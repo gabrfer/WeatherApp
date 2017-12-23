@@ -21,7 +21,6 @@
         android:fontFamily="sans-serif-condensed"
         android:text="Parcialmente nublado con nubes de evolución durante la tarde"
         android:textAlignment="center"
-        android:textColor="?android:attr/colorControlNormal"
         android:textSize="20sp"
         android:textStyle="italic" />
 
@@ -45,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.45"
-            app:srcCompat="@drawable/na" />
+            app:srcCompat="@mipmap/na" />
 
         <LinearLayout
             android:layout_width="0dp"

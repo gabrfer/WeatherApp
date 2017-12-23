@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_detail_historical.*
 import fer.kotlin.weatherapp.ui.adapters.TabsPagerAdapter
-import android.support.design.widget.TabLayout
 import fer.kotlin.weatherapp.domain.commands.DsRequestPastForecast
 import fer.kotlin.weatherapp.extensions.UnixToTime
 import kotlinx.android.synthetic.main.fragment_tab_general.*
@@ -42,7 +41,6 @@ class DetailHistoricalActivity : AppCompatActivity() {
         pager.offscreenPageLimit = 3
 
         // Give the TabLayout the ViewPager
-        val tabLayout: TabLayout = findViewById(fer.kotlin.weatherapp.R.id.tabLayout) as TabLayout
         tabLayout.setupWithViewPager(pager)
 
         AsyncTaskExample().execute()
@@ -56,8 +54,8 @@ class DetailHistoricalActivity : AppCompatActivity() {
             uiThread {
                 imgIcon.loadForecastIconUrl(result.icon, ctx = this@DetailHistoricalActivity)
 
-                txtTempMax.text = """${String.format("%.1f", result.temperatureMax.toDouble())}º"""
-                txtTempMin.text = """${String.format("%.1f", result.temperatureMin.toDouble())}º"""
+                txtTempMax.text = """${String.format("%.1f", result.temperatureMax.toDouble())}ï¿½"""
+                txtTempMin.text = """${String.format("%.1f", result.temperatureMin.toDouble())}ï¿½"""
 
                 txtPrediccionDesc.text = result.summary
 
@@ -113,41 +111,41 @@ class DetailHistoricalActivity : AppCompatActivity() {
 
         private fun loadTabGeneral(result: DsForecast) {
             with (result) {
-                imgIcon.loadForecastIconUrl(icon, ctx = this@DetailHistoricalActivity)
+                imgIcon.loadForecastIconUrl(daily[0].icon, ctx = this@DetailHistoricalActivity)
 
-                txtTempMax.text = """${String.format("%.1f", temperatureMax.toDouble())}º"""
-                txtTempMin.text = """${String.format("%.1f", temperatureMin.toDouble())}º"""
+                txtTempMax.text = """${String.format("%.1f", daily[0].temperatureMax.toDouble())}Âº"""
+                txtTempMax.text = """${String.format("%.1f", daily[0].temperatureMin.toDouble())}Âº"""
 
-                txtPrediccionDesc.text = summary
+                txtPrediccionDesc.text = daily[0].summary
 
-                txtHoraTempMax.text = temperatureMaxTime.UnixToTime()
-                txtHoraTempMin.text = temperatureMinTime.UnixToTime()
+                txtHoraTempMax.text = daily[0].temperatureMaxTime.UnixToTime()
+                txtHoraTempMin.text = daily[0].temperatureMinTime.UnixToTime()
 
-                txtHumedad.text = """${(humidity.toDouble() * 100)}%"""
-                txtPresion.text = """$pressure hPa"""
+                txtHumedad.text = """${(daily[0].humidity.toDouble() * 100)}%"""
+                txtPresion.text = """$daily[0].pressure hPa"""
             }
         }
 
         private fun loadTabRAinWind(result: DsForecast) {
             with (result) {
-                imgViewRain.loadRainTypeIconUrl(precipType, ctx = this@DetailHistoricalActivity)
+                imgViewRain.loadRainTypeIconUrl(daily[0].precipType, ctx = this@DetailHistoricalActivity)
 
-                txtRainType.text = if (precipIntensity != "") getPrecipType(precipType) else "SIN LLUVIA"
-                txtIntensity.text = if (precipIntensity != "") """$precipIntensity mm/h""" else "[Sin datos]"
+                txtRainType.text = if (daily[0].precipIntensity != "") getPrecipType(daily[0].precipType) else "SIN LLUVIA"
+                txtIntensity.text = if (daily[0].precipIntensity != "") """$daily[0].precipIntensity mm/h""" else "[Sin datos]"
 
-                txtIntensityMax.text = if (precipIntensityMax != "") """$precipIntensityMax mm/h""" else "[Sin datos]"
-                txtHoraIntensityMax.text = precipIntensityMaxTime.UnixToTime()
+                txtIntensityMax.text = if (daily[0].precipIntensityMax != "") """$daily[0].precipIntensityMax mm/h""" else "[Sin datos]"
+                txtHoraIntensityMax.text = daily[0].precipIntensityMaxTime.UnixToTime()
 
-                txtWindSpeed.text = if (windSpeed != "") """$windSpeed m/s""" else "[Sin datos]"
+                txtWindSpeed.text = if (daily[0].windSpeed != "") """$daily[0].windSpeed m/s""" else "[Sin datos]"
 
                 //Compass configure
                 //get angle around the z-axis rotated
-                if (windBearing != "") {
+                if (daily[0].windBearing != "") {
                     //TextBox with the degrees value
-                    txtWindBearing.text = if (windBearing != "") """$windBearing º""" else "[Sin datos]"
+                    txtWindBearing.text = if (daily[0].windBearing != "") """$daily[0].windBearing Âº""" else "[Sin datos]"
 
                     //Compass
-                    val degree = Math.round(windBearing.toFloat()).toFloat()
+                    val degree = Math.round(daily[0].windBearing.toFloat()).toFloat()
 
                     // rotation animation - reverse turn degree degrees
                     val ra = RotateAnimation(
@@ -196,19 +194,19 @@ class DetailHistoricalActivity : AppCompatActivity() {
         private fun loadTabSunMoon(result: DsForecast) {
             with (result) {
 
-                txtSunriseTime.text = sunriseTime.UnixToTime()
-                txtSunsetTime.text = sunsetTime.UnixToTime()
+                txtSunriseTime.text = daily[0].sunriseTime.UnixToTime()
+                txtSunsetTime.text = daily[0].sunsetTime.UnixToTime()
 
-                txtUvIndex.text = uvIndex
+                txtUvIndex.text = daily[0].uvIndex
                 //txtUvIndex.setBackgroundColor(getUvIndexColor(uvIndex = uvIndex.toInt()))
-                txtUvIndex.setBackgroundResource(getUvIndexColor(uvIndex = uvIndex.toInt()))
+                txtUvIndex.setBackgroundResource(getUvIndexColor(uvIndex = daily[0].uvIndex.toInt()))
 
 
-                txtHoraMaxUv.text = uvIndexTime.UnixToTime()
+                txtHoraMaxUv.text = daily[0].uvIndexTime.UnixToTime()
 
 
-                txtFaseLunar.text = moonPhase
-                imgViewFaseLunar.loadMoonPhaseIconUrl(moonPhase.toDouble(), ctx = this@DetailHistoricalActivity)
+                txtFaseLunar.text = daily[0].moonPhase
+                imgViewFaseLunar.loadMoonPhaseIconUrl(daily[0].moonPhase.toDouble(), ctx = this@DetailHistoricalActivity)
             }
 
         }

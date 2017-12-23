@@ -3,23 +3,20 @@ package fer.kotlin.weatherapp.data.db
 import fer.kotlin.weatherapp.domain.datasource.DsForecastDataSource
 import fer.kotlin.weatherapp.domain.model.DsForecast
 import fer.kotlin.weatherapp.extensions.ToDateUTC
-import fer.kotlin.weatherapp.extensions.UTCtoUnix
 import fer.kotlin.weatherapp.extensions.parseList
 import fer.kotlin.weatherapp.extensions.toVarargArray
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
-/**
- * Created by Default on 03/10/2017.
- */
-class DsForecastDb(val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.instance,
-                   val dataMapper: DsDataMapper = DsDataMapper()) : DsForecastDataSource {
+
+class DsForecastDb(private val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.instance,
+                   private val dataMapper: DsDataMapper = DsDataMapper()) : DsForecastDataSource {
 
     override fun requestPastForecast(latitude: String, longitude: String, time: IntArray): DsForecast? = forecastDbHelper.use {
 
         var result: DsForecast? = null
 
-        var dateUTC = time.ToDateUTC(false)
+        val dateUTC = time.ToDateUTC(false)
 
         val dayRequest = "${DsForecastTable.LATITUDE} = ? " +
                 "AND ${DsForecastTable.LONGITUDE} = ?" +
@@ -29,7 +26,7 @@ class DsForecastDb(val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.ins
                 .whereSimple(dayRequest, latitude, longitude, dateUTC)
                 .parseList { DsForecast(HashMap(it), emptyList()) }
 
-        if (dayForecast != null && dayForecast.size > 0) {
+        if (dayForecast.isNotEmpty()) {
 
             val idDayForecast = dayForecast[0]._id
 
@@ -37,7 +34,7 @@ class DsForecastDb(val forecastDbHelper: ForecastDbHelper = ForecastDbHelper.ins
 
             val hoursForecast = select(DsForecastUnitTable.NAME)
                     .whereSimple(hoursRequest, idDayForecast.toString())
-                    .parseList { DsForecastUnit(HashMap(it)) }
+                    .parseList { DsForecastHourly(HashMap(it)) }
 
             dayForecast[0].hourly = hoursForecast
 

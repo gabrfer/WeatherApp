@@ -59,7 +59,7 @@ fun GetAemetCallResult(url: String, okHttpSslClient: OkHttpClient, gson: Gson = 
             .build()
 
 
-    val responseFirstCallStr = okHttpSslClient.newCall(requestFirstCall).execute().body().charStream()
+    val responseFirstCallStr = okHttpSslClient.newCall(requestFirstCall).execute().body()?.charStream()
     val pastForecastFirstCallResult : AemetFirstCallResult = gson.fromJson(responseFirstCallStr, AemetFirstCallResult::class.java)
 
     //Second call
@@ -67,5 +67,5 @@ fun GetAemetCallResult(url: String, okHttpSslClient: OkHttpClient, gson: Gson = 
             .url(pastForecastFirstCallResult.datos)
             .build()
 
-    return okHttpSslClient.newCall(requestFinalCall).execute().body().charStream()
+    return okHttpSslClient.newCall(requestFinalCall).execute().body()?.charStream()!!
 }

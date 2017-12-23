@@ -11,20 +11,16 @@ class DarkSkyServer(private val dataMapper: DarkSkyDataMapper = DarkSkyDataMappe
 
     override fun requestPastForecast(latitude: String, longitude: String, time: IntArray): DsForecast? {
         val dateWithoutTime = time.ToDateUTC(false)
-        val result = DarkSkyApiCalls().RequestPastForecast(latitude, longitude, dateWithoutTime)
-        val converted = dataMapper.convertToDomain(result, dateWithoutTime)
+        val result = DarkSkyApiCalls().requestPastForecast(latitude, longitude, dateWithoutTime)
+        val converted = dataMapper.convertToDomain(result)
         dsForecastDb.saveDsForecast(converted)
 
         return dsForecastDb.requestPastForecast(latitude, longitude, time)
     }
 
     fun requestActualForecast(latitude: String, longitude: String): DsForecast {
-        val calendar = Calendar.getInstance()
-        val time: IntArray = intArrayOf(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
-        val dateWithoutTime = time.ToDateUTC(false)
-
-        val result = DarkSkyApiCalls().RequestActualForecast(latitude, longitude)
-        return dataMapper.convertToDomain(result, dateWithoutTime)
+        val result = DarkSkyApiCalls().requestActualForecast(latitude, longitude)
+        return dataMapper.convertToDomain(result)
     }
 
 }
