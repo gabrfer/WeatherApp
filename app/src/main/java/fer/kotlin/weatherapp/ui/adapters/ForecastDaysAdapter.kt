@@ -8,6 +8,7 @@ import fer.kotlin.weatherapp.R
 import fer.kotlin.weatherapp.domain.model.DsForecastDaily
 import fer.kotlin.weatherapp.extensions.DateUnixToDayOfWeek
 import fer.kotlin.weatherapp.extensions.DateUnixToNormal
+import fer.kotlin.weatherapp.extensions.UnixToTime
 import fer.kotlin.weatherapp.extensions.ctx
 import fer.kotlin.weatherapp.utils.loadForecastIconUrl
 import kotlinx.android.synthetic.main.day_forecast_item.view.*
@@ -33,14 +34,23 @@ class ForecastDaysAdapter(private val forecastList: ArrayList<DsForecastDaily>):
             with(forecast) {
                 itemView.txtDate.text = forecast.time.DateUnixToNormal()
                 itemView.txtDay.text = forecast.time.DateUnixToDayOfWeek()
-
                 itemView.imgIconWeather.loadForecastIconUrl(forecast.icon, ctx = itemView.ctx)
-
                 itemView.txtTempMax.text = """${String.format("%.1f", forecast.temperatureMax.toDouble())}º"""
-                itemView.txtTempMax.text = """${String.format("%.1f", forecast.temperatureMin.toDouble())}º"""
-
+                itemView.txtTempMin.text = """${String.format("%.1f", forecast.temperatureMin.toDouble())}º"""
                 itemView.txtRain.text = """${String.format("%.2f", forecast.precipIntensity.toDouble())} mm"""
                 itemView.txtWindSpeed.text = """${String.format("%.1f", forecast.windSpeed.toDouble())} kmh"""
+
+                /* Expandable layout */
+                itemView.txtTempMaxExp.text = """${String.format("%.1f", forecast.temperatureMax.toDouble())}º"""
+                itemView.txtTempMinExp.text = """${String.format("%.1f", forecast.temperatureMin.toDouble())}º"""
+                itemView.txtRainExp.text = String.format("%.2f", forecast.precipIntensity.toDouble())
+                itemView.txtRainProbExp.text = forecast.precipProbability
+                itemView.txtWindExp.text = String.format("%.2f", forecast.windSpeed.toDouble())
+                itemView.txtHumidityExp.text = String.format("%.2f", forecast.humidity.toDouble())
+                itemView.txtPressureExp.text = String.format("%.2f", forecast.pressure.toDouble())
+                itemView.txtUvIndexExp.text = forecast.uvIndex
+                itemView.txtSunriseExp.text = forecast.sunriseTime.UnixToTime()
+                itemView.txtSunsetExp.text = forecast.sunsetTime.UnixToTime()
 
                 itemView.setOnClickListener {
                     if (itemView.layoutExpandable.visibility == View.GONE) {

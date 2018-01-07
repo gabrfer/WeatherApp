@@ -82,7 +82,8 @@
                         android:gravity="center_vertical"
                         android:text="10º"
                         android:textAlignment="center"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="10sp" />
                 </TableRow>
 
                 <TableRow
@@ -101,7 +102,7 @@
                         android:text="5º"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="10sp" />
                 </TableRow>
 
             </TableLayout>
@@ -129,7 +130,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="22 mm"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </TableRow>
 
                 <TableRow
@@ -149,7 +151,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12.3 kmh"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </TableRow>
 
             </TableLayout>
@@ -243,11 +246,11 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.33"
+                    android:contentDescription="Forecast icon"
                     android:scaleType="fitCenter"
                     android:scaleX="1.4"
                     android:scaleY="1.2"
-                    app:srcCompat="@mipmap/partly_cloudy_day_white"
-                    android:contentDescription="Forecast icon" />
+                    app:srcCompat="@mipmap/partly_cloudy_day_white" />
             </LinearLayout>
 
             <Space
@@ -271,7 +274,7 @@
                         android:text="0.15 mm"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txtRainProbExp"
@@ -281,7 +284,7 @@
                         android:text="25%"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txtWindExp"
@@ -291,7 +294,7 @@
                         android:text="22 KMH"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
                 </TableRow>
 
                 <TableRow
@@ -307,7 +310,7 @@
                         android:text="@string/rainMayus"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/txtRainProbLit"
@@ -317,7 +320,7 @@
                         android:text="@string/rainProbShortMayus"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/txtWindLit"
@@ -327,7 +330,7 @@
                         android:text="@string/windMayus"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
                 </TableRow>
 
                 <TableRow
@@ -353,7 +356,7 @@
                         android:text="67%"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txtPressureExp"
@@ -363,7 +366,7 @@
                         android:text="25"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txtUvIndexExp"
@@ -373,7 +376,7 @@
                         android:text="2"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
                 </TableRow>
 
                 <TableRow
@@ -389,7 +392,7 @@
                         android:text="@string/humidityMayus"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/txtPressureLit"
@@ -399,7 +402,7 @@
                         android:text="@string/pressureMayus"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/txtUvIndexLit"
@@ -409,7 +412,7 @@
                         android:text="@string/uvIndexMayus"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
                 </TableRow>
 
             </TableLayout>
@@ -432,20 +435,20 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
+                        android:contentDescription="Sunrise icon"
                         android:scaleX="0.7"
                         android:scaleY="0.7"
-                        app:srcCompat="@mipmap/icons8_sunrise_80"
-                        android:contentDescription="Sunrise icon" />
+                        app:srcCompat="@mipmap/icons8_sunrise_80" />
 
                     <ImageView
                         android:id="@+id/imgViewSunset"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
+                        android:contentDescription="Sunset icon"
                         android:scaleX="0.7"
                         android:scaleY="0.7"
-                        app:srcCompat="@mipmap/icons8_sunset_80"
-                        android:contentDescription="Sunset icon" />
+                        app:srcCompat="@mipmap/icons8_sunset_80" />
                 </TableRow>
 
                 <TableRow

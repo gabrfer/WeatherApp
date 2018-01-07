@@ -1,7 +1,6 @@
 package fer.kotlin.weatherapp.ui.fragments
 
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -9,15 +8,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 
 import fer.kotlin.weatherapp.R
 import fer.kotlin.weatherapp.domain.model.DsForecastDaily
 import fer.kotlin.weatherapp.ui.adapters.ForecastDaysAdapter
-import kotlinx.android.synthetic.main.fragment_entry_days.*
 import kotlinx.android.synthetic.main.fragment_entry_days.view.*
-import android.support.v7.widget.DefaultItemAnimator
-import kotlinx.android.synthetic.main.content_main.*
+import fer.kotlin.weatherapp.utils.ObservableDsForecastDaily
+import java.util.*
 
 
 /**
@@ -31,15 +28,24 @@ import kotlinx.android.synthetic.main.content_main.*
 class FragmentEntryDays : Fragment() {
 
     private var daysForecastList: ArrayList<DsForecastDaily>? = null
-
+    private var observableDsForecastDaily: ObservableDsForecastDaily? = null
     private var mListener: OnFragmentInteractionListener? = null
 
+    private val dsForecastHourlyChanged = object : Observer {
+        override fun update(o: Observable, newValue: Any) {
+            // a1 changed! (aka a changed)
+            // newValue is the observable int value (it's the same as a1.getValue())
+            daysForecastList = newValue as ArrayList<DsForecastDaily>
+            fragmentManager.beginTransaction().detach(this@FragmentEntryDays).attach(this@FragmentEntryDays).commit()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            daysForecastList = arguments.getParcelableArrayList<DsForecastDaily>("LIST_DAYS_FORECAST")
-            //mParam1 = arguments.getString(ARG_PARAM1)
-            //mParam2 = arguments.getString(ARG_PARAM2)
+            //daysForecastList = arguments.getParcelableArrayList<DsForecastDaily>("LIST_DAYS_FORECAST")
+            observableDsForecastDaily = arguments.getSerializable("CURRENT_FORECAST") as ObservableDsForecastDaily
+            daysForecastList = observableDsForecastDaily!!.getDsForecastDaily()
+            observableDsForecastDaily!!.addObserver(dsForecastHourlyChanged)
         }
     }
 

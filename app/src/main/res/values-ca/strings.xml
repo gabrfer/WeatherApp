@@ -9,6 +9,11 @@
     <string name="no_location_detected">
         No location detected. Make sure location is enabled on the device.
     </string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="location_updated">Location Updated: %1$s</string>
+    <string name="launch_activity">MY ACTIVITY</string>
+    <string name="remove_location_updates">REMOVE UPDATE</string>
 
     <!-- TABS -->
     <string name="tab_main_actual_text">Actual</string>

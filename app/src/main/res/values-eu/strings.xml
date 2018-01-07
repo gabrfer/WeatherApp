@@ -2,60 +2,64 @@
 
     <!-- APP GENERAL -->
     <string name="app_name">NovaWeather</string>
-    <string name="action_settings">Settings</string>
-    <string name="permission_rationale">Location permission is needed for core functionality</string>
-    <string name="permission_denied_explanation">Permission was denied, but is needed for core functionality.</string>
-    <string name="settings">Settings</string>
+    <string name="action_settings">@string/settings</string>
+    <string name="permission_rationale">Kokapen baimena beharrezkoa da aplikazio funtzionamendu zuzena emateko</string>
+    <string name="permission_denied_explanation">Baimena ez onartua. Hala ere, beharrezkoa da baimena onartzea funtzionamendu zuzena emateko aplikazioan.</string>
+    <string name="settings">Konfigurazioa</string>
     <string name="no_location_detected">
-        No location detected. Make sure location is enabled on the device.
+        Kokapena ez da aurkitu. Begiratu ea zure gailuko kokapena aktibatuta dagoen.
     </string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="location_updated">Location Updated: %1$s</string>
+    <string name="launch_activity">MY ACTIVITY</string>
+    <string name="remove_location_updates">REMOVE UPDATE</string>
 
     <!-- TABS -->
-    <string name="tab_main_actual_text">Actual</string>
-    <string name="tab_main_detail_text">Detalle</string>
-    <string name="tab_main_hourly_text">Por hora</string>
-    <string name="tab_main_daily_text">Semana</string>
+    <string name="tab_main_actual_text">Egungoa</string>
+    <string name="tab_main_detail_text">Xehetasuna</string>
+    <string name="tab_main_hourly_text">Ordukoa</string>
+    <string name="tab_main_daily_text">Astea</string>
     <string name="tab_format">Tab: %1$d</string>
 
     <!-- TEXTOS PANTALLAS -->
-    <string name="f_entry_details_general_data">Datos generales</string>
-    <string name="f_entry_details_air_data">Calidad del aire</string>
-    <string name="f_entry_details_sun_data">Datos solares</string>
-    <string name="f_entry_details_moon_data">Datos lunares</string>
+    <string name="f_entry_details_general_data">Datu orokorrak</string>
+    <string name="f_entry_details_air_data">Airearen kalitatea</string>
+    <string name="f_entry_details_sun_data">Eguzkiaren datuak</string>
+    <string name="f_entry_details_moon_data">Ilargiaren datuak</string>
     <string name="tempMax">Tª Max</string>
     <string name="TempMin">Tª Min</string>
     <string name="PrecipitationShort">Precip.</string>
-    <string name="windSpeed">Viento</string>
-    <string name="humidity">Humedad</string>
-    <string name="pressure">Presión</string>
+    <string name="windSpeed">Haizea</string>
+    <string name="humidity">Hezetasuna</string>
+    <string name="pressure">Presioa</string>
     <string name="pm25aqi">PM2.5 AQI</string>
     <string name="pm10aqi">PM10 AQI</string>
     <string name="o3aqi">O3 AQI</string>
     <string name="no2aqi">NO2 AQI</string>
     <string name="so2aqi">SO2 AQI</string>
     <string name="temperatureShort">Temp.</string>
-    <string name="sun">Sol</string>
-    <string name="uvLow">Bajo</string>
-    <string name="uvModerate">Moderado</string>
-    <string name="uvHigh">Alto</string>
-    <string name="uvVeryHigh">Muy alto</string>
-    <string name="uvExtremelyHigh">Extrem. alto</string>
-    <string name="uvIndex">Indice UV</string>
-    <string name="uvMaxHour">Hora Max. UV</string>
-    <string name="moon">Luna</string>
-    <string name="newMoon">Luna nueva</string>
-    <string name="moonFirstQuarter">Cuarto creciente</string>
-    <string name="fullMoon">Luna llena</string>
-    <string name="moonThirdQuarter">Cuarto menguante</string>
-    <string name="moonPhase">Fase lunar</string>
+    <string name="sun">Eguzkia</string>
+    <string name="uvLow">Baxua</string>
+    <string name="uvModerate">Moderatua</string>
+    <string name="uvHigh">Altua</string>
+    <string name="uvVeryHigh">Oso altua</string>
+    <string name="uvExtremelyHigh">Goiko muga gainditzean</string>
+    <string name="uvIndex">UV Indizea</string>
+    <string name="uvMaxHour">UV gehiengoaren ordua</string>
+    <string name="moon">Ilargia</string>
+    <string name="newMoon">Ilberria</string>
+    <string name="moonFirstQuarter">Ilgora</string>
+    <string name="fullMoon">Ilbetea</string>
+    <string name="moonThirdQuarter">Ilbehera</string>
+    <string name="moonPhase">Ilargia fasea</string>
     <string name="TempMaxShort">Tª MAX</string>
-    <string name="uvIndexMayus">INDICE UV</string>
-    <string name="pressureMayus">PRESION</string>
-    <string name="humidityMayus">HUMEDAD</string>
-    <string name="windMayus">VIENTO</string>
+    <string name="uvIndexMayus">UV INDIZEA</string>
+    <string name="pressureMayus">PRESIOA</string>
+    <string name="humidityMayus">HEZETASUNA</string>
+    <string name="windMayus">HAIZEA</string>
     <string name="rainProbShortMayus">PROB. LLUVIA</string>
-    <string name="rainMayus">LLUVIA</string>
+    <string name="rainMayus">EURIA</string>
     <string name="tempMinShortMayus">Tª MIN</string>
     <string name="tempMaxShortMayus">Tª MAX</string>
-
 </resources>

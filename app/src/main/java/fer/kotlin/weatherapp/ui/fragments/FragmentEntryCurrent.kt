@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import fer.kotlin.weatherapp.R
 import fer.kotlin.weatherapp.domain.model.DsForecast
 import fer.kotlin.weatherapp.domain.model.DsForecastCurrently
+import fer.kotlin.weatherapp.utils.ObservableDsForecastCurrently
 import fer.kotlin.weatherapp.utils.loadForecastIconUrl
 import kotlinx.android.synthetic.main.fragment_entry_current.view.*
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -22,16 +24,26 @@ import kotlinx.android.synthetic.main.fragment_entry_current.view.*
  */
 class FragmentEntryCurrent : Fragment() {
 
-    // TODO: Rename and change types of parameters
-    private var currentLocationName : String = ""
     private var currentForecast : DsForecastCurrently? = null
+    private var observableDsForecastCurrently: ObservableDsForecastCurrently? = null
     private var mListener: OnFragmentInteractionListener? = null
+
+    private val dsForecastCurrentlyChanged = object : Observer {
+        override fun update(o: Observable, newValue: Any) {
+            // a1 changed! (aka a changed)
+            // newValue is the observable int value (it's the same as a1.getValue())
+            currentForecast = newValue as DsForecastCurrently
+            currentForecast!!.temperature = "77"
+            fragmentManager.beginTransaction().detach(this@FragmentEntryCurrent).attach(this@FragmentEntryCurrent).commit()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            currentLocationName = arguments.getString("CURRENT_LOCATION_NAME")
-            currentForecast = arguments.getParcelable("CURRENT_FORECAST")
+            observableDsForecastCurrently = arguments.getSerializable("CURRENT_FORECAST") as ObservableDsForecastCurrently
+            currentForecast = observableDsForecastCurrently!!.getDsForecastCurrently()
+            observableDsForecastCurrently!!.addObserver(dsForecastCurrentlyChanged)
         }
     }
 

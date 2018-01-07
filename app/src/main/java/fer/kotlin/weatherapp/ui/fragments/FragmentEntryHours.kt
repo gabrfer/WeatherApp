@@ -3,18 +3,18 @@ package fer.kotlin.weatherapp.ui.fragments
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 
 import fer.kotlin.weatherapp.R
 import fer.kotlin.weatherapp.domain.model.DsForecastHourly
 import fer.kotlin.weatherapp.ui.adapters.ForecastHoursAdapter
+import fer.kotlin.weatherapp.utils.ObservableDsForecastHourly
 import kotlinx.android.synthetic.main.fragment_entry_days.view.*
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -27,15 +27,25 @@ import kotlinx.android.synthetic.main.fragment_entry_days.view.*
 class FragmentEntryHours : Fragment() {
 
     private var hoursForecastList: ArrayList<DsForecastHourly>? = null
-
+    private var observableDsForecastHourly: ObservableDsForecastHourly? = null
     private var mListener: OnFragmentInteractionListener? = null
+
+    private val dsForecastHourlyChanged = object : Observer {
+        override fun update(o: Observable, newValue: Any) {
+            // a1 changed! (aka a changed)
+            // newValue is the observable int value (it's the same as a1.getValue())
+            hoursForecastList = newValue as ArrayList<DsForecastHourly>
+            fragmentManager.beginTransaction().detach(this@FragmentEntryHours).attach(this@FragmentEntryHours).commit()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            hoursForecastList = arguments.getParcelableArrayList<DsForecastHourly>("LIST_HOURS_FORECAST")
-            //mParam1 = arguments.getString(ARG_PARAM1)
-            //mParam2 = arguments.getString(ARG_PARAM2)
+            //hoursForecastList = arguments.getParcelableArrayList<DsForecastHourly>("LIST_HOURS_FORECAST")
+            observableDsForecastHourly = arguments.getSerializable("CURRENT_FORECAST") as ObservableDsForecastHourly
+            hoursForecastList = observableDsForecastHourly!!.getDsForecasHourly()
+            observableDsForecastHourly!!.addObserver(dsForecastHourlyChanged)
         }
     }
 

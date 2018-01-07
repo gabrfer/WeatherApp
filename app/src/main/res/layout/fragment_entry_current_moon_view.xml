@@ -72,7 +72,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="0.25"
                             android:contentDescription="New moon icon"
-                            app:srcCompat="@mipmap/moonphase_0" />
+                            app:srcCompat="@mipmap/moonphase_0_0" />
 
                         <TextView
                             android:id="@+id/textView27"

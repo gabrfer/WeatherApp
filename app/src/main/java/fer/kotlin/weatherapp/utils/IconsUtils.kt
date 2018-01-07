@@ -15,7 +15,9 @@ fun ImageView.loadRainTypeIconUrl(iconText: String, ctx: Context) {
 }
 
 fun ImageView.loadMoonPhaseIconUrl(phase: Double, ctx: Context) {
-    Picasso.with(ctx).load(getDrawableMoonPhase(phase)).into(this)
+    val resourceStr = getDrawableMoonPhase(phase)
+    val resourceId = resources.getIdentifier(resourceStr, "mipmap", context.packageName)
+    Picasso.with(ctx).load(resourceId).into(this)
 }
 
 fun getDrawableForecast(name: String) =
@@ -63,7 +65,21 @@ fun getUvIndexColor(uvIndex: Int) =
             else -> android.R.color.transparent
         }
 
-fun getDrawableMoonPhase(name: Double) =
+fun getDrawableMoonPhase(phase: Double): String {
+
+    val result: String
+
+    val moonPhaseRanges = arrayListOf(0.0, 3.23, 6.46, 9.69, 12.92, 16.15, 19.38, 22.61, 25.84, 29.07, 32.3, 35.53,
+            38.76, 41.99, 45.22, 48.45, 51.68, 54.91, 58.14, 61.37, 64.6, 67.83, 71.06, 74.29, 77.52, 80.75, 83.98, 87.21,
+            90.44, 93.67, 96.90)
+
+    val phaseStr:String = moonPhaseRanges.last { x -> x <= phase*100 }.toString()
+    result = "moonphase_" + phaseStr.replace(".", "_")
+
+    return result
+}
+
+fun getDrawableMoonPhaseSimple(name: Double) =
         when (name) {
             0.0 -> R.mipmap.luna_llena
             in 0.01 .. 0.24 -> R.mipmap.luna_gibada_creciente

@@ -6,7 +6,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "fer.kotlin.weatherapp"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -63,7 +63,7 @@ dependencies {
     compile 'me.grantland:autofittextview:0.2.1'
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
-    compile 'com.google.android.gms:play-services:11.6.0'
+    compile 'com.google.android.gms:play-services:11.8.0'
     compile 'com.android.support:multidex:1.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     testCompile 'junit:junit:4.12'

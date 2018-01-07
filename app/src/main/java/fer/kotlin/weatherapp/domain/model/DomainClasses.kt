@@ -125,7 +125,7 @@ data class DsForecast(val id: Long, val latitude: String, val longitude: String,
 
 data class DsForecastCurrently(val id: Long, val idDsForecast: Long, val time: String?, val summary: String?,
                                val icon: String?, val nearestStormDistance: String?, val nearestStormBearing: String?,
-                               val precipIntensity: String?, val precipProbability: String?, val temperature: String?,
+                               val precipIntensity: String?, val precipProbability: String?, var temperature: String?,
                                val apparentTemperature: String?, val dewPoint: String?, val humidity: String?,
                                val pressure: String?, val windSpeed: String?, val windGust: String?,
                                val windBearing: String?, val cloudCover: String?, val uvIndex: String?,

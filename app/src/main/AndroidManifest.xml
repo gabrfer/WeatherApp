@@ -40,6 +40,11 @@
             android:name=".ui.activities.earthforecast.past.MainHistoricalActivity"
             android:exported="true" />
         <activity android:name=".ui.activities.marsforecast.MarsMainActivity" />
+
+        <service
+            android:name=".services.LocationService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

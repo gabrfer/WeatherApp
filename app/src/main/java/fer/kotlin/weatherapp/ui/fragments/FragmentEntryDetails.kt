@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import fer.kotlin.weatherapp.R
 import fer.kotlin.weatherapp.domain.model.DsForecast
-import fer.kotlin.weatherapp.domain.model.DsForecastCurrently
-import fer.kotlin.weatherapp.utils.loadForecastIconUrl
-import kotlinx.android.synthetic.main.fragment_entry_details.view.*
+import fer.kotlin.weatherapp.domain.model.DsForecastDaily
+import fer.kotlin.weatherapp.extensions.UnixToTime
+import fer.kotlin.weatherapp.utils.*
+import kotlinx.android.synthetic.main.fragment_entry_current_general_view.view.*
+import kotlinx.android.synthetic.main.fragment_entry_current_moon_view.view.*
+import kotlinx.android.synthetic.main.fragment_entry_current_sun_view.view.*
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -23,14 +27,25 @@ import kotlinx.android.synthetic.main.fragment_entry_details.view.*
 class FragmentEntryDetails : Fragment() {
 
     // TODO: Rename and change types of parameters
-    private var currentForecast : DsForecastCurrently? = null
+    private lateinit var dayForecast : DsForecastDaily
+    private lateinit var observableDsForecastDaily: ObservableDsForecastDaily
 
     private var mListener: OnFragmentInteractionListener? = null
 
+    private val dsForecastCurrentlyChanged = object : Observer {
+        override fun update(o: Observable, newValue: Any) {
+            // a1 changed! (aka a changed)
+            // newValue is the observable int value (it's the same as a1.getValue())
+            dayForecast = newValue as DsForecastDaily
+            fragmentManager.beginTransaction().detach(this@FragmentEntryDetails).attach(this@FragmentEntryDetails).commit()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            currentForecast = arguments.getParcelable("CURRENT_FORECAST_DETAILS")
+            observableDsForecastDaily = arguments.getSerializable("CURRENT_FORECAST") as ObservableDsForecastDaily
+            dayForecast = observableDsForecastDaily.getDsForecastDaily().get(index = 0)
+            observableDsForecastDaily.addObserver(dsForecastCurrentlyChanged)
         }
     }
 
@@ -39,19 +54,40 @@ class FragmentEntryDetails : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_entry_details, container, false)
 
-        view.imgIcon.loadForecastIconUrl(currentForecast?.icon!!, ctx = view.context)
-        view.txtTempMin.text = """${String.format("%.1f", currentForecast?.temperature?.toDouble())}º"""
-        view.txtHumedad.text = """${String.format("%.2f", currentForecast?.humidity?.toDouble())} mm"""
-        view.txtPresion.text = """${String.format("%.2f", currentForecast?.pressure?.toDouble())} mm"""
-        view.txtVientoVel.text = """${String.format("%.2f", currentForecast?.windSpeed?.toDouble())} kmh"""
-        view.txtVientoDir.text = """${currentForecast?.windBearing} º"""
-
-        view.txtPrecip.text = """${String.format("%.2f", currentForecast?.precipIntensity?.toDouble())} mm"""
-        view.txtPrecipProb.text = """${String.format("%.1f", currentForecast?.precipProbability?.toDouble())} %"""
-        //TODO - Obtener calidad del aire de la API correspondiente
-        view.txtTempMax.text = currentForecast?.uvIndex
+        loadGeneralData(view)
+        loadAirData(view)
+        loadSunData(view)
+        loadMoonData(view)
 
         return view
+    }
+
+    private fun loadGeneralData(view: View) {
+        view.imgIcon.loadForecastIconUrl(dayForecast.icon, ctx = view.context)
+        view.txtTempMin.text = """${String.format("%.1f", dayForecast.temperatureMin?.toDouble())}º"""
+        view.txtTempMax.text = """${String.format("%.1f", dayForecast.temperatureMax?.toDouble())}º"""
+        view.txtPrecip.text = """${String.format("%.2f", dayForecast.precipIntensity?.toDouble())} mm"""
+        view.txtPrecipProb.text = """${String.format("%.1f", dayForecast.precipProbability?.toDouble())} %"""
+        view.txtVientoVel.text = """${String.format("%.2f", dayForecast.windSpeed?.toDouble())} kmh"""
+        view.txtVientoDir.text = """${dayForecast.windBearing} º"""
+        view.txtHumedad.text = """${String.format("%.2f", dayForecast.humidity?.toDouble())} mm"""
+        view.txtPresion.text = """${String.format("%.2f", dayForecast.pressure?.toDouble())} mm"""
+    }
+
+    private fun loadAirData(view: View) {
+        //TODO - Obtener calidad del aire de la API correspondiente
+    }
+
+    private fun loadSunData(view: View) {
+        view.txtUvIndex.text = dayForecast.uvIndex
+        view.txtHoraMaxUv.text = dayForecast.uvIndexTime.UnixToTime()
+        view.txtSunriseTime.text = dayForecast.sunriseTime.UnixToTime()
+        view.txtSunsetTime.text = dayForecast.sunsetTime.UnixToTime()
+    }
+
+    private fun loadMoonData(view: View) {
+        view.txtFaseLunar.text = dayForecast.moonPhase
+        view.imgViewFaseLunar.loadMoonPhaseIconUrl(dayForecast.moonPhase.toDouble(), ctx = view.context)
     }
 
     // TODO: Rename method, update argument and hook method into UI event

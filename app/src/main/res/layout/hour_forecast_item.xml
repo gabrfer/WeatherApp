@@ -41,7 +41,7 @@
                     android:text="18:00"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <ImageView
@@ -68,7 +68,7 @@
                     android:text="10º"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -86,20 +86,19 @@
 
                     <ImageView
                         android:id="@+id/imageView9"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.4"
-                        app:srcCompat="@mipmap/rain_gauge_white"
-                        android:contentDescription="Rain gauge icon" />
+                        android:contentDescription="Rain gauge icon"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@mipmap/rain_gauge_white" />
 
                     <TextView
                         android:id="@+id/txtRain"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
                         android:text="22 mm"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
 
                 </TableRow>
 
@@ -111,20 +110,19 @@
 
                     <ImageView
                         android:id="@+id/imageView10"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.4"
-                        app:srcCompat="@mipmap/wind_black_white"
-                        android:contentDescription="Wind icon" />
+                        android:contentDescription="Wind icon"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@mipmap/wind_black_white" />
 
                     <TextView
                         android:id="@+id/txtWindSpeed"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
                         android:text="12.3 kmh"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
                 </TableRow>
 
             </TableLayout>
@@ -223,10 +221,11 @@
                         android:id="@+id/txtRainExp"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_weight="0.33"
                         android:text="0.15 mm"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/txtRainProbExp"
@@ -236,7 +235,7 @@
                         android:text="25%"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/txtWindExp"
@@ -246,7 +245,7 @@
                         android:text="22 KMH"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
                 <TableRow
@@ -308,7 +307,7 @@
                         android:text="67%"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/txtPressureExp"
@@ -318,7 +317,7 @@
                         android:text="25"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/txtUvIndexExp"
@@ -328,7 +327,7 @@
                         android:text="2"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
                 <TableRow
@@ -372,64 +371,6 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="40sp" />
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="1">
-
-                    <ImageView
-                        android:id="@+id/imgViewSunrise"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:scaleX="0.7"
-                        android:scaleY="0.7"
-                        app:srcCompat="@mipmap/icons8_sunrise_80"
-                        android:contentDescription="Sunrise icon" />
-
-                    <ImageView
-                        android:id="@+id/imgViewSunset"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:scaleX="0.7"
-                        android:scaleY="0.7"
-                        app:srcCompat="@mipmap/icons8_sunset_80"
-                        android:contentDescription="Sunset icon" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="1">
-
-                    <TextView
-                        android:id="@+id/txtSunriseExp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:text="08:00"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/txtSunsetExp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:text="21:00"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-                </TableRow>
-
-            </TableLayout>
 
         </LinearLayout>
 

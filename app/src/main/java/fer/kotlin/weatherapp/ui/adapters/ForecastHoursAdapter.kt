@@ -30,16 +30,23 @@ class ForecastHoursAdapter(private val forecastList: ArrayList<DsForecastHourly>
 
         fun bindForecast(forecast: DsForecastHourly) {
             with(forecast) {
+
                 itemView.txtHour.text = forecast.time.UnixToTime()
-
                 itemView.imgIconWeather.loadForecastIconUrl(forecast.icon, ctx = itemView.ctx)
-
                 itemView.txtTemp.text = """${String.format("%.1f", forecast.temperature.toDouble())}º"""
-
                 itemView.txtRain.text = """${String.format("%.2f", forecast.precipIntensity.toDouble())} mm"""
                 itemView.txtWindSpeed.text = """${String.format("%.1f", forecast.windSpeed.toDouble())} kmh"""
                 //itemView.progresBarProbability.progress = (forecast.precipProbability.toDouble() * 100).toInt()
-                itemView.txtProbability.text = """${(forecast.precipProbability.toDouble() * 100).toInt()}%"""
+                itemView.txtRain.text = """${(forecast.precipProbability.toDouble() * 100).toInt()}%"""
+
+                /* Expandable layout */
+                itemView.txtTempExp.text = """${String.format("%.1f", forecast.temperature.toDouble())}º"""
+                itemView.txtRainExp.text = String.format("%.2f", forecast.precipIntensity.toDouble())
+                itemView.txtRainProbExp.text = forecast.precipProbability
+                itemView.txtWindExp.text = String.format("%.2f", forecast.windSpeed.toDouble())
+                itemView.txtHumidityExp.text = String.format("%.2f", forecast.humidity.toDouble())
+                itemView.txtPressureExp.text = String.format("%.2f", forecast.pressure.toDouble())
+                itemView.txtUvIndexExp.text = forecast.uvIndex
 
                 itemView.setOnClickListener {
                     if (itemView.layoutExpandable.visibility == View.GONE) {
