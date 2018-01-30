@@ -44,16 +44,20 @@
             android:title="Eventos astronómicos" />
     </group>
 
-    <group android:id="@+id/twitter"
-        android:checkableBehavior="single">
+    <group android:id="@+id/twitterGroup"
+        android:checkableBehavior="single"
+        android:checkable="true">
         <item
-            android:checkable="false"
+            android:id="@+id/twitter"
+            android:checkable="true"
             android:title="Zona Twitter">
             <menu>
                 <item
+                    android:id="@+id/twitterMeteo"
                     android:icon="@mipmap/ic_email_black"
                     android:title="Noticias Meteo" />
                 <item
+                    android:id="@+id/twitterScience"
                     android:icon="@drawable/ic_media_play_dark"
                     android:title="Noticias Ciencia" />
             </menu>

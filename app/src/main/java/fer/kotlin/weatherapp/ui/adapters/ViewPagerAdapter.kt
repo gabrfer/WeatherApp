@@ -7,11 +7,15 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import fer.kotlin.weatherapp.R
 import fer.kotlin.weatherapp.domain.model.DsForecast
+import fer.kotlin.weatherapp.domain.model.TweetModel
+import fer.kotlin.weatherapp.domain.model.TweetModelList
 import fer.kotlin.weatherapp.domain.pojo.TabDetails
 import fer.kotlin.weatherapp.ui.fragments.FragmentEntryCurrent
 import fer.kotlin.weatherapp.ui.fragments.FragmentEntryDays
 import fer.kotlin.weatherapp.ui.fragments.FragmentEntryDetails
 import fer.kotlin.weatherapp.ui.fragments.FragmentEntryHours
+import fer.kotlin.weatherapp.ui.fragments.twitter.FragmentTwitterMeteo
+import fer.kotlin.weatherapp.ui.fragments.twitter.FragmentTwitterScience
 import fer.kotlin.weatherapp.utils.ObservableDsForecastCurrently
 import fer.kotlin.weatherapp.utils.ObservableDsForecastDaily
 import fer.kotlin.weatherapp.utils.ObservableDsForecastHourly
@@ -29,10 +33,31 @@ class ViewPagerAdapter(manager: FragmentManager, ctx: Context) : FragmentPagerAd
 
     override fun getCount(): Int = tabs.size
     override fun getItem(position:Int):Fragment = tabs[position].fragment
+
     fun addFragment(tab: TabDetails) {
         tabs.add(tab)
     }
+
     override fun getPageTitle(position:Int):CharSequence = tabs[position].tabName
+
+    fun populateViewPagerTwitter(listTweetMeteo: TweetModelList, listTweetScience: TweetModelList){
+        var tab: TabDetails
+
+        var argumentsMeteo = Bundle()
+        val fragmentMeteo = FragmentTwitterMeteo()
+        argumentsMeteo.putParcelable("TWEETS_METEO", listTweetMeteo)
+        fragmentMeteo.arguments = argumentsMeteo
+
+        var argumentsScience = Bundle()
+        val fragmentScience = FragmentTwitterScience()
+        argumentsScience.putParcelable("TWEETS_SCIENCE", listTweetScience)
+        fragmentScience.arguments = argumentsScience
+
+        tab = TabDetails("Meteo" as String, fragmentMeteo)
+        this.addFragment(tab)
+        tab = TabDetails("Sciencie" as String, fragmentScience)
+        this.addFragment(tab)
+    }
 
     fun populateViewPager(forecastCurrently: ObservableDsForecastCurrently, forecastHourly: ObservableDsForecastHourly,
                                   forecastDaily: ObservableDsForecastDaily) {

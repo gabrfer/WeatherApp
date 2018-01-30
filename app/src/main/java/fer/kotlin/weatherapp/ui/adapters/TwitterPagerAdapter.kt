@@ -3,8 +3,8 @@ package fer.kotlin.weatherapp.ui.adapters
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import fer.kotlin.weatherapp.ui.fragments.twitter.TwitterMeteo
-import fer.kotlin.weatherapp.ui.fragments.twitter.TwitterScience
+import fer.kotlin.weatherapp.ui.fragments.twitter.FragmentTwitterMeteo
+import fer.kotlin.weatherapp.ui.fragments.twitter.FragmentTwitterScience
 
 
 class Twitter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
@@ -19,10 +19,10 @@ class Twitter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
         when (index) {
             0 ->
                 // Top Rated fragment activity
-                return TwitterMeteo()
+                return FragmentTwitterMeteo()
             1 ->
                 // Games fragment activity
-                return TwitterScience()
+                return FragmentTwitterScience()
         }
 
         return null

@@ -1,6 +1,7 @@
 package fer.kotlin.weatherapp.ui.activities
 
 import android.Manifest
+import android.app.Activity
 import android.os.Bundle
 import fer.kotlin.weatherapp.R
 import kotlinx.android.synthetic.main.content_main.*
@@ -21,6 +22,7 @@ import kotlin.collections.ArrayList
 import android.view.MenuItem
 import android.location.Geocoder
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import fer.kotlin.weatherapp.extensions.showSnackbar
@@ -32,6 +34,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.io.IOException
 import java.util.*
+import org.jetbrains.anko.startActivity
+
+
 
 class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsResultCallback, PermissionUtils.PermissionResultCallback,
                                           NavigationView.OnNavigationItemSelectedListener  {
@@ -92,6 +97,22 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
     }
 
     private fun displaySelectedFragment(menuItemId:Int) {
+
+        var activity: Activity? = null
+        val bundle = Bundle()/* Creates the fragments and sets it to ViewPager */
+        //To change body of created functions use File | Settings | File Templates.
+        /* Permission managing */
+        // Build intent that displays the App settings screen.
+        // Build intent that displays the App settings screen.
+        /* Permission managing */
+        when (menuItemId) {
+            R.id.home ->  Log.d("", "Activity Main")
+            R.id.twitterGroup -> startActivity<TwitterActivity>()
+            R.id.twitterMeteo -> startActivity<TwitterActivity>()
+            R.id.twitterScience -> startActivity<TwitterActivity>()
+            else -> Log.d("", "Activity nothing")
+        }
+
         drawer_layout.closeDrawer(GravityCompat.START)
     }
 
@@ -187,38 +208,38 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
     }
 
     @Suppress("NAME_SHADOWING")
-    inner class AsyncTaskExample: AsyncTask<String, DsForecast?, DsForecast?>() {
+        inner class AsyncTaskExample: AsyncTask<String, DsForecast?, DsForecast?>() {
 
-        override fun onPreExecute() {
-            super.onPreExecute()
-            progress_bar.visibility = View.VISIBLE
-        }
-
-        override fun doInBackground(vararg p0: String?): DsForecast? {
-
-            var result: DsForecast? = null
-
-            try {
-                result = DsRequestActualForecast(currentLatitude, currentLongitude).execute()
-            } catch(Ex: Exception) {
-                Log.d("", "Error in doInBackground " + Ex.message)
-            }
-            return result
-        }
-
-        override fun onPostExecute(result: DsForecast?) {
-            super.onPostExecute(result)
-
-            if (result != null) {
-                forecast.setDsForecast(result)
-                forecastCurrently.setDsForecastCurrently(result.currently!!)
-                forecastHourly.setDsForecastHourly(ArrayList(result.hourly))
-                forecastDaily.setDsForecastDaily(ArrayList(result.daily))
-
-                if (mSectionsPagerAdapter.count == 0) { populateViewPager() }
+            override fun onPreExecute() {
+                super.onPreExecute()
+                progress_bar.visibility = View.VISIBLE
             }
 
-            progress_bar.visibility = View.GONE
+            override fun doInBackground(vararg p0: String?): DsForecast? {
+
+                var result: DsForecast? = null
+
+                try {
+                    result = DsRequestActualForecast(currentLatitude, currentLongitude).execute()
+                } catch(Ex: Exception) {
+                    Log.d("", "Error in doInBackground " + Ex.message)
+                }
+                return result
+            }
+
+            override fun onPostExecute(result: DsForecast?) {
+                super.onPostExecute(result)
+
+                if (result != null) {
+                    forecast.setDsForecast(result)
+                    forecastCurrently.setDsForecastCurrently(result.currently!!)
+                    forecastHourly.setDsForecastHourly(ArrayList(result.hourly))
+                    forecastDaily.setDsForecastDaily(ArrayList(result.daily))
+
+                    if (mSectionsPagerAdapter.count == 0) { populateViewPager() }
+                }
+
+                progress_bar.visibility = View.GONE
+            }
         }
-    }
 }

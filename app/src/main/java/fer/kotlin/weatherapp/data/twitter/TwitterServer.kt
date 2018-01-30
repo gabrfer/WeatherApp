@@ -2,6 +2,8 @@ package fer.kotlin.weatherapp.data.twitter
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import fer.kotlin.weatherapp.domain.model.TweetModel
 import java.net.URL
 
@@ -19,9 +21,15 @@ class TwitterServer(val dataMapper: TwitterDataMapper = TwitterDataMapper(), val
 
     fun requestUsers(usersType: String): TwitterResultUsers{
         val finalURL : String = URL_USERS.replace("[TYPE]", usersType)
+
         val dsUsersJsonStr = URL(finalURL).readText()
 
-        return  gson.fromJson(dsUsersJsonStr, TwitterResultUsers::class.java)
+        //return  gson.fromJson(dsUsersJsonStr, TwitterResultUsers::class.java)
+
+        val mapper = jacksonObjectMapper()
+        val usersList = mapper.readValue<List<TwitterResultUser>>(dsUsersJsonStr)
+
+        return TwitterResultUsers(usersList)
     }
 
     fun requestMeteoTweets(): List<TweetModel>{

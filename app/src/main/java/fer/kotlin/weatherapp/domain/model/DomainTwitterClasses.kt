@@ -3,6 +3,31 @@ package fer.kotlin.weatherapp.domain.model
 import android.os.Parcel
 import android.os.Parcelable
 
+data class TweetModelList(public val listTweets: List<TweetModel>): Parcelable {
+
+    constructor(parcel: Parcel) : this(
+            parcel.createTypedArrayList(TweetModel)
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeTypedList(listTweets)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<TweetModelList> {
+        override fun createFromParcel(parcel: Parcel): TweetModelList {
+            return TweetModelList(parcel)
+        }
+
+        override fun newArray(size: Int): Array<TweetModelList?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
 data class TweetModel(private val userName: String, private val userScreenName: String, private val id: String,
                       private val created_ad: String, private val text: String, private val lang: String,
                       private val url: String): Parcelable {

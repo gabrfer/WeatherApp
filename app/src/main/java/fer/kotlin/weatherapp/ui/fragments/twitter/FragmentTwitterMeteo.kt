@@ -13,12 +13,12 @@ import fer.kotlin.weatherapp.R
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [TwitterMeteo.OnFragmentInteractionListener] interface
+ * [FragmentTwitterMeteo.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [TwitterMeteo.newInstance] factory method to
+ * Use the [FragmentTwitterMeteo.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TwitterMeteo : Fragment() {
+class FragmentTwitterMeteo : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -87,11 +87,11 @@ class TwitterMeteo : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TwitterMeteo.
+         * @return A new instance of fragment FragmentTwitterMeteo.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): TwitterMeteo {
-            val fragment = TwitterMeteo()
+        fun newInstance(param1: String, param2: String): FragmentTwitterMeteo {
+            val fragment = FragmentTwitterMeteo()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)

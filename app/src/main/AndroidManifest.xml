@@ -21,6 +21,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -45,6 +46,11 @@
             android:name=".services.LocationService"
             android:enabled="true"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.activities.TwitterActivity"
+            android:label="@string/title_activity_twitter"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
