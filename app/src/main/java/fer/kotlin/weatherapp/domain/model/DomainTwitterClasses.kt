@@ -28,9 +28,9 @@ data class TweetModelList(public val listTweets: List<TweetModel>): Parcelable {
     }
 }
 
-data class TweetModel(private val userName: String, private val userScreenName: String, private val id: String,
-                      private val created_ad: String, private val text: String, private val lang: String,
-                      private val url: String): Parcelable {
+data class TweetModel(val userName: String, val userScreenName: String, val id: String,
+                      val created_ad: String, val text: String, val lang: String,
+                      val url: String): Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),

@@ -11,7 +11,7 @@ class TwitterDataMapper{
         val listTweetModel: MutableList<TweetModel> = mutableListOf()
 
         listUserTweets.mapTo(listTweetModel) {
-            TweetModel(user.name, user.screenName, it.id, it.created_ad,
+            TweetModel(user.name, user.screen_name, it.id, it.created_ad,
                     it.text, it.lang, it.url)
         }
 

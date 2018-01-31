@@ -41,8 +41,6 @@ class TwitterActivity : AppCompatActivity() {
 
     /* Creates the fragments and sets it to ViewPager */
     private fun populateViewPager() {
-        this.getTweets()
-
         mSectionsPagerAdapter.populateViewPagerTwitter(tweetsMeteoScience[0], tweetsMeteoScience[1])
         viewPager.adapter = mSectionsPagerAdapter
         tabLayout.setupWithViewPager(viewPager)

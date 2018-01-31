@@ -19,17 +19,18 @@ class TwitterServer(val dataMapper: TwitterDataMapper = TwitterDataMapper(), val
         private val URL_USER_TWEETS = "https://mugan86.com/euskadi_tropikal/twitter/api/v1/tweets/get.php?user=[USER_ID]&items=20"
     }
 
-    fun requestUsers(usersType: String): TwitterResultUsers{
+    private fun requestUsers(usersType: String): TwitterResultUsers{
         val finalURL : String = URL_USERS.replace("[TYPE]", usersType)
 
-        val dsUsersJsonStr = URL(finalURL).readText()
-
-        //return  gson.fromJson(dsUsersJsonStr, TwitterResultUsers::class.java)
+        var dsUsersJsonStr = URL(finalURL).readText()
+        val indexOfFirstItem = dsUsersJsonStr.indexOf("id", 0, false)
+        dsUsersJsonStr = "[{" + dsUsersJsonStr.substring(indexOfFirstItem - 1, dsUsersJsonStr.length - 1)
 
         val mapper = jacksonObjectMapper()
-        val usersList = mapper.readValue<List<TwitterResultUser>>(dsUsersJsonStr)
 
-        return TwitterResultUsers(usersList)
+        val listUsers = mapper.readValue<List<TwitterResultUser>>(dsUsersJsonStr)
+
+        return TwitterResultUsers(listUsers)
     }
 
     fun requestMeteoTweets(): List<TweetModel>{

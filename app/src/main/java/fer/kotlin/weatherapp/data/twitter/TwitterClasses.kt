@@ -2,7 +2,7 @@ package fer.kotlin.weatherapp.data.twitter
 
 data class TwitterResultUsers(val listUsers: List<TwitterResultUser>)
 
-data class TwitterResultUser(val id: String, val name: String, val screenName: String, val description: String,
+data class TwitterResultUser(val id: String, val name: String, val screen_name: String, val description: String,
                              val followers_count: String, val friends_count: String, val permanent: String, val lang: String,
                              val type: String, val profile_img: String)
 
