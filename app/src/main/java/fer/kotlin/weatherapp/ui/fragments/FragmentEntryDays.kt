@@ -31,13 +31,14 @@ class FragmentEntryDays : Fragment() {
     private var observableDsForecastDaily: ObservableDsForecastDaily? = null
     private var mListener: OnFragmentInteractionListener? = null
 
-    private val dsForecastHourlyChanged = object : Observer {
-        override fun update(o: Observable, newValue: Any) {
-            // a1 changed! (aka a changed)
-            // newValue is the observable int value (it's the same as a1.getValue())
-            daysForecastList = newValue as ArrayList<DsForecastDaily>
-            fragmentManager.beginTransaction().detach(this@FragmentEntryDays).attach(this@FragmentEntryDays).commit()
-        }
+    private val dsForecastHourlyChanged = Observer { _, newValue ->
+        // a1 changed! (aka a changed)
+        // newValue is the observable int value (it's the same as a1.getValue())
+        @Suppress("UNCHECKED_CAST")
+        daysForecastList = newValue as ArrayList<DsForecastDaily>
+        fragmentManager.beginTransaction().detach(this@FragmentEntryDays).attach(this@FragmentEntryDays).commit()
+
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

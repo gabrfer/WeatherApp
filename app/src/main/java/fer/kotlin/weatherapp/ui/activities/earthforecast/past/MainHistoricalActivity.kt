@@ -59,7 +59,7 @@ class MainHistoricalActivity : AppCompatActivity(), AlertDialogOkListener {
                 txtMunicipio.setAdapter(municipiosAutoAdapter)
 
                 txtMunicipio.onItemClickListener = OnItemClickListener {
-                    arg0, arg1, position, arg3 ->
+                    _, arg1, position, _ ->
                     selectedMunicipio = municipiosAll[position]
 
                     val input = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -76,8 +76,8 @@ class MainHistoricalActivity : AppCompatActivity(), AlertDialogOkListener {
         }
     }
 
-    fun showDatePickerDialog(editText: Button) {
-        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+    private fun showDatePickerDialog(editText: Button) {
+        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { _, year, month, day ->
             // +1 because january is zero
             val selected = day.toString() + " / " + (month + 1) + " / " + year
             editText.text = selected
@@ -91,23 +91,21 @@ class MainHistoricalActivity : AppCompatActivity(), AlertDialogOkListener {
     }
 
 
-    override fun AlertDialogOK(index: Int, listObjectType: ListObjectType) {
-        when (listObjectType) {
+    override fun alertDialogOK(index: Int, listObjectType: ListObjectType) = when (listObjectType) {
 
-            ListObjectType.PROVINCIA -> {
-                btnProv.text = provincias[index]
+        ListObjectType.PROVINCIA -> {
+            btnProv.text = provincias[index]
 
-                municipios = municipiosAll.filter {
-                    it.probintzia == provincias[index]
-                }
-
-                btnMunicipio.text = "Selecciona municipio"
+            municipios = municipiosAll.filter {
+                it.probintzia == provincias[index]
             }
 
-            ListObjectType.MUNICIPIO -> {
-                btnMunicipio.text = municipios[index].izena
-                selectedMunicipio = municipios[index]
-            }
+            btnMunicipio.text = "Selecciona municipio"
+        }
+
+        ListObjectType.MUNICIPIO -> {
+            btnMunicipio.text = municipios[index].izena
+            selectedMunicipio = municipios[index]
         }
     }
 

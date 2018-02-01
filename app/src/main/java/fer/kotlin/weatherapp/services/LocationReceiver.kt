@@ -15,6 +15,6 @@ class LocationReceiver : BroadcastReceiver() {
     }
 
     private fun sendDataToCurrentActivity(location: Location, context: Context) {
-        if (context.javaClass == MainActivity::class.java) (context as MainActivity).changeLocation(location, "My location")
+        if (context.javaClass == MainActivity::class.java) (context as MainActivity).changeLocation(location)
     }
 }

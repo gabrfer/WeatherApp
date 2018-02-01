@@ -3,15 +3,12 @@ package fer.kotlin.weatherapp.domain.datasource
 import fer.kotlin.weatherapp.data.db.ForecastDb
 import fer.kotlin.weatherapp.domain.model.PastForecastList
 import fer.kotlin.weatherapp.data.serverinthepast.PastForecastServer
-import fer.kotlin.weatherapp.domain.model.PastForecast
 import fer.kotlin.weatherapp.domain.model.StationList
 import fer.kotlin.weatherapp.extensions.firstResult
 import okhttp3.OkHttpClient
 
-/**
- * Created by Default on 15/08/2017.
- */
-class PastForecastProvider(val okHttpSslClient: OkHttpClient, val sources: List<PastForecastDataSource> = listOf(ForecastDb(), PastForecastServer(okHttpSslClient))) {
+
+class PastForecastProvider(private val okHttpSslClient: OkHttpClient, private val sources: List<PastForecastDataSource> = listOf(ForecastDb(), PastForecastServer(okHttpSslClient))) {
 
     companion object {
         val DAY_IN_MILLIS = 1000 * 60 * 60 * 24
@@ -27,8 +24,7 @@ class PastForecastProvider(val okHttpSslClient: OkHttpClient, val sources: List<
     fun requestStationsNew(): StationList {
         var res:StationList
         res = ForecastDb().requestStations()
-        if (res != null && res.size > 0) res
-        else {
+        if (res.size <= 0) {
             res = PastForecastServer(okHttpSslClient).requestStations()!!
         }
 

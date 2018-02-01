@@ -64,18 +64,19 @@ class FragmentEntryDetails : Fragment() {
 
     private fun loadGeneralData(view: View) {
         view.imgIcon.loadForecastIconUrl(dayForecast.icon, ctx = view.context)
-        view.txtTempMin.text = """${String.format("%.1f", dayForecast.temperatureMin?.toDouble())}º"""
-        view.txtTempMax.text = """${String.format("%.1f", dayForecast.temperatureMax?.toDouble())}º"""
-        view.txtPrecip.text = """${String.format("%.2f", dayForecast.precipIntensity?.toDouble())} mm"""
-        view.txtPrecipProb.text = """${String.format("%.1f", dayForecast.precipProbability?.toDouble())} %"""
-        view.txtVientoVel.text = """${String.format("%.2f", dayForecast.windSpeed?.toDouble())} kmh"""
+        view.txtTempMin.text = """${String.format("%.1f", dayForecast.temperatureMin.toDouble())}º"""
+        view.txtTempMax.text = """${String.format("%.1f", dayForecast.temperatureMax.toDouble())}º"""
+        view.txtPrecip.text = """${String.format("%.2f", dayForecast.precipIntensity.toDouble())} mm"""
+        view.txtPrecipProb.text = """${String.format("%.1f", dayForecast.precipProbability.toDouble())} %"""
+        view.txtVientoVel.text = """${String.format("%.2f", dayForecast.windSpeed.toDouble())} kmh"""
         view.txtVientoDir.text = """${dayForecast.windBearing} º"""
-        view.txtHumedad.text = """${String.format("%.2f", dayForecast.humidity?.toDouble())} mm"""
-        view.txtPresion.text = """${String.format("%.2f", dayForecast.pressure?.toDouble())} mm"""
+        view.txtHumedad.text = """${String.format("%.2f", dayForecast.humidity.toDouble())} mm"""
+        view.txtPresion.text = """${String.format("%.2f", dayForecast.pressure.toDouble())} mm"""
     }
 
     private fun loadAirData(view: View) {
         //TODO - Obtener calidad del aire de la API correspondiente
+        view.txtFaseLunar
     }
 
     private fun loadSunData(view: View) {
@@ -90,12 +91,6 @@ class FragmentEntryDetails : Fragment() {
         view.imgViewFaseLunar.loadMoonPhaseIconUrl(dayForecast.moonPhase.toDouble(), ctx = view.context)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
-        }
-    }
 
     override fun onDetach() {
         super.onDetach()
@@ -111,23 +106,18 @@ class FragmentEntryDetails : Fragment() {
      *
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
+    interface OnFragmentInteractionListener
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
         private val ARG_PARAM1 = "forecast"
-        private val ARG_PARAM2 = "param2"
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
          * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment FragmentEntryDetails.
          */
         // TODO: Rename and change types and number of parameters

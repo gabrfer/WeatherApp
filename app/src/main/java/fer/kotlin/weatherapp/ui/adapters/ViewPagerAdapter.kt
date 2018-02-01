@@ -53,9 +53,9 @@ class ViewPagerAdapter(manager: FragmentManager, ctx: Context) : FragmentPagerAd
         argumentsScience.putParcelable("TWEETS_SCIENCE", listTweetScience)
         fragmentScience.arguments = argumentsScience
 
-        tab = TabDetails("Meteo" as String, fragmentMeteo)
+        tab = TabDetails("Meteo", fragmentMeteo)
         this.addFragment(tab)
-        tab = TabDetails("Sciencie" as String, fragmentScience)
+        tab = TabDetails("Sciencie", fragmentScience)
         this.addFragment(tab)
     }
 

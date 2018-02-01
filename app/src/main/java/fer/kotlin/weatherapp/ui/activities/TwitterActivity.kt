@@ -11,7 +11,6 @@ import fer.kotlin.weatherapp.domain.datasource.TwitterProvider
 import fer.kotlin.weatherapp.domain.model.TweetModelList
 import fer.kotlin.weatherapp.ui.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_twitter.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 class TwitterActivity : AppCompatActivity() {
 

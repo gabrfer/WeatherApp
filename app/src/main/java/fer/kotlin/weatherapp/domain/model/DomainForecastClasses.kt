@@ -3,9 +3,6 @@ package fer.kotlin.weatherapp.domain.model
 import android.os.Parcel
 import android.os.Parcelable
 
-/**
- * Created by Default on 30/07/2017.
- */
 data class ForecastList(val id: Long, val city: String, val country: String, val dailyForecast:List<Forecast>) {
     val size: Int
         get() = dailyForecast.size
@@ -16,7 +13,7 @@ data class ForecastList(val id: Long, val city: String, val country: String, val
 data class Forecast(val id: Long, val date: Long, val description: String, val high: Int, val low: Int, val iconUrl: String)
 
 
-data class PastForecastList(val pastForecastList:List<PastForecast>) {
+data class PastForecastList(private val pastForecastList:List<PastForecast>) {
     val size: Int
         get() = pastForecastList.size
 
@@ -93,7 +90,7 @@ data class DsForecast(val id: Long, val latitude: String, val longitude: String,
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readParcelable<DsForecastCurrently>(DsForecastCurrently.javaClass.classLoader),
+            parcel.readParcelable<DsForecastCurrently>(DsForecastCurrently::class.java.classLoader),
             parcel.createTypedArrayList(DsForecastHourly),
             parcel.createTypedArrayList(DsForecastDaily),
             parcel.readString())
@@ -108,18 +105,12 @@ data class DsForecast(val id: Long, val latitude: String, val longitude: String,
         parcel.writeString(offset)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<DsForecast> {
-        override fun createFromParcel(parcel: Parcel): DsForecast {
-            return DsForecast(parcel)
-        }
+        override fun createFromParcel(parcel: Parcel): DsForecast = DsForecast(parcel)
 
-        override fun newArray(size: Int): Array<DsForecast?> {
-            return arrayOfNulls(size)
-        }
+        override fun newArray(size: Int): Array<DsForecast?> = arrayOfNulls(size)
     }
 }
 
@@ -177,18 +168,12 @@ data class DsForecastCurrently(val id: Long, val idDsForecast: Long, val time: S
         parcel.writeString(ozone)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<DsForecastHourly> {
-        override fun createFromParcel(parcel: Parcel): DsForecastHourly {
-            return DsForecastHourly(parcel)
-        }
+        override fun createFromParcel(parcel: Parcel): DsForecastHourly = DsForecastHourly(parcel)
 
-        override fun newArray(size: Int): Array<DsForecastHourly?> {
-            return arrayOfNulls(size)
-        }
+        override fun newArray(size: Int): Array<DsForecastHourly?> = arrayOfNulls(size)
     }
 }
 
@@ -289,18 +274,12 @@ data class DsForecastDaily(val id: Long, val idDsForecast: Long, val time: Strin
         parcel.writeString(apparentTemperatureMinTime)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<DsForecastDaily> {
-        override fun createFromParcel(parcel: Parcel): DsForecastDaily {
-            return DsForecastDaily(parcel)
-        }
+        override fun createFromParcel(parcel: Parcel): DsForecastDaily = DsForecastDaily(parcel)
 
-        override fun newArray(size: Int): Array<DsForecastDaily?> {
-            return arrayOfNulls(size)
-        }
+        override fun newArray(size: Int): Array<DsForecastDaily?> = arrayOfNulls(size)
     }
 }
 
@@ -352,17 +331,11 @@ data class DsForecastHourly(val id: Long, val idDsForecast: Long, val time: Stri
         parcel.writeString(ozone)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<DsForecastHourly> {
-        override fun createFromParcel(parcel: Parcel): DsForecastHourly {
-            return DsForecastHourly(parcel)
-        }
+        override fun createFromParcel(parcel: Parcel): DsForecastHourly = DsForecastHourly(parcel)
 
-        override fun newArray(size: Int): Array<DsForecastHourly?> {
-            return arrayOfNulls(size)
-        }
+        override fun newArray(size: Int): Array<DsForecastHourly?> = arrayOfNulls(size)
     }
 }

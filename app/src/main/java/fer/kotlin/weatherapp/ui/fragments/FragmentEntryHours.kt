@@ -30,13 +30,12 @@ class FragmentEntryHours : Fragment() {
     private var observableDsForecastHourly: ObservableDsForecastHourly? = null
     private var mListener: OnFragmentInteractionListener? = null
 
-    private val dsForecastHourlyChanged = object : Observer {
-        override fun update(o: Observable, newValue: Any) {
-            // a1 changed! (aka a changed)
-            // newValue is the observable int value (it's the same as a1.getValue())
-            hoursForecastList = newValue as ArrayList<DsForecastHourly>
-            fragmentManager.beginTransaction().detach(this@FragmentEntryHours).attach(this@FragmentEntryHours).commit()
-        }
+    private val dsForecastHourlyChanged = Observer { _, newValue ->
+        // a1 changed! (aka a changed)
+        // newValue is the observable int value (it's the same as a1.getValue())
+        @Suppress("UNCHECKED_CAST")
+        hoursForecastList = newValue as ArrayList<DsForecastHourly>
+        fragmentManager.beginTransaction().detach(this@FragmentEntryHours).attach(this@FragmentEntryHours).commit()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

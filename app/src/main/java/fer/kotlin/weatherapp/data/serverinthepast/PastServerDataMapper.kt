@@ -17,7 +17,7 @@ class PastServerDataMapper {
     }
 
     private fun convertPastForecastListToDomain(list: List<PastForecast>): List<ModelPastForecast> {
-        return list.mapIndexed { i, pastForecast ->
+        return list.mapIndexed { _, pastForecast ->
             convertPastForecastItemToDomain(pastForecast.copy())
         }
     }
@@ -37,7 +37,7 @@ class PastServerDataMapper {
     }
 
     private fun convertStationListToDomain(list: List<Station>): List<ModelStation> {
-        return list.mapIndexed { i, stationsList ->
+        return list.mapIndexed { _, stationsList ->
             convertStationToDomain(stationsList.copy())
         }
     }

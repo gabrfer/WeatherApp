@@ -1,7 +1,7 @@
 package fer.kotlin.weatherapp.ui.activities
 
 import android.Manifest
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import fer.kotlin.weatherapp.R
 import kotlinx.android.synthetic.main.content_main.*
@@ -22,7 +22,6 @@ import kotlin.collections.ArrayList
 import android.view.MenuItem
 import android.location.Geocoder
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import fer.kotlin.weatherapp.extensions.showSnackbar
@@ -57,6 +56,7 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
     private lateinit var forecastHourly: ObservableDsForecastHourly
     private lateinit var forecastDaily: ObservableDsForecastDaily
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -98,13 +98,6 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
 
     private fun displaySelectedFragment(menuItemId:Int) {
 
-        var activity: Activity? = null
-        val bundle = Bundle()/* Creates the fragments and sets it to ViewPager */
-        //To change body of created functions use File | Settings | File Templates.
-        /* Permission managing */
-        // Build intent that displays the App settings screen.
-        // Build intent that displays the App settings screen.
-        /* Permission managing */
         when (menuItemId) {
             R.id.home ->  Log.d("", "Activity Main")
             R.id.twitterGroup -> startActivity<TwitterActivity>()
@@ -135,7 +128,7 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
     }
     /* Navigation drawer */
 
-    fun changeLocation(location: Location, title: String) {
+    fun changeLocation(location: Location) {
         mLastLocation = location
         currentLatitude = location.latitude.toString()
         currentLongitude = location.longitude.toString()
@@ -207,7 +200,7 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
         tabLayout.setupWithViewPager(viewPager)
     }
 
-    @Suppress("NAME_SHADOWING")
+    @SuppressLint("StaticFieldLeak")
         inner class AsyncTaskExample: AsyncTask<String, DsForecast?, DsForecast?>() {
 
             override fun onPreExecute() {
